@@ -6,8 +6,6 @@ public class PressButton : MonoBehaviour
 {
     LineRenderer lr;
 
-    private RaycastHit hit;
-
     public float pressTime = 5.0f;
     float curTime;
 
