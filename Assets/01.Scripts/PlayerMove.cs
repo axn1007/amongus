@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerMove : MonoBehaviour
 {
     enum PlayerState
@@ -41,6 +40,7 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
+        
         //게임 시작 전에는 Idle 상태
         state = PlayerState.Idle;
 
