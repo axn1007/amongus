@@ -5,7 +5,9 @@ using UnityEngine.UI;
 public class Vent : MonoBehaviour
 {
     public GameObject ventUI;
+    public GameObject leverUI;
     public static Vent instance;
+    public bool sliderBool;
 
     private void Awake()
     {
@@ -31,6 +33,17 @@ public class Vent : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
                 ventUI.SetActive(true);
+            }
+        }
+
+        if (other.transform.tag == "lever")
+        {
+            print("this is lever!");
+
+            if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            {
+                leverUI.SetActive(true);
+                sliderBool = true;
             }
         }
     }

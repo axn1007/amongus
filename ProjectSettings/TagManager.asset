@@ -6,6 +6,7 @@ TagManager:
   tags:
   - vent
   - Bottle
+  - lever
   layers:
   - Default
   - TransparentFX

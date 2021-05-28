@@ -11,6 +11,7 @@ public class MissionManager : MonoBehaviour
     int scanCount;
     int btnCount;
     int bottleCount;
+    int leverCount;
 
     private void Awake()
     {
@@ -66,4 +67,14 @@ public class MissionManager : MonoBehaviour
         }
     }
 
+    public void LeverMission(int count)
+    {
+        leverCount += count;
+
+        if(leverCount == 1)
+        {
+            print("LeverMission Complete");
+            ManagerMaster(1);
+        }
+    }
 }
