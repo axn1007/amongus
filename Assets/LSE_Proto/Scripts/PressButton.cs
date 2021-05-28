@@ -19,7 +19,7 @@ public class PressButton : MonoBehaviour
         DrawGuideLine();
         PressButtons();
     }
-
+    
     void DrawGuideLine()
     {
         Ray ray = new Ray(transform.position, transform.forward);
@@ -37,6 +37,7 @@ public class PressButton : MonoBehaviour
             lr.SetPosition(1, transform.position + transform.forward * 1);
         }
     }
+    
 
     void PressButtons()
     {
@@ -61,6 +62,4 @@ public class PressButton : MonoBehaviour
             }
         }
     }
-
-
 }
