@@ -6,6 +6,7 @@ public class Vent : MonoBehaviour
 {
     public GameObject ventUI;
     public GameObject leverUI;
+    public GameObject energyUI;
     public static Vent instance;
     public bool sliderBool;
 
@@ -44,6 +45,16 @@ public class Vent : MonoBehaviour
             {
                 leverUI.SetActive(true);
                 sliderBool = true;
+            }
+        }
+
+        if (other.transform.tag == "energy")
+        {
+            print("this is energy");
+
+            if(Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            {
+                energyUI.SetActive(true);
             }
         }
     }

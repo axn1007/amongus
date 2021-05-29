@@ -7,6 +7,7 @@ TagManager:
   - vent
   - Bottle
   - lever
+  - energy
   layers:
   - Default
   - TransparentFX
