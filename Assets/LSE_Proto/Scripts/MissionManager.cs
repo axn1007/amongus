@@ -13,7 +13,7 @@ public class MissionManager : MonoBehaviour
     int bottleCount;
     int leverCount;
     int energyCount;
-
+    int fireCount;
     private void Awake()
     {
         instance = this;
@@ -86,6 +86,17 @@ public class MissionManager : MonoBehaviour
         if(energyCount == 1)
         {
             print("EnergyMission Complete");
+            ManagerMaster(1);
+        }
+    }
+
+    public void FireMission(int count)
+    {
+        fireCount += count;
+
+        if(fireCount == 1)
+        {
+            print("FireMission Complete");
             ManagerMaster(1);
         }
     }

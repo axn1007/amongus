@@ -5,6 +5,8 @@ using UnityEngine;
 public class LeftHandTouch : MonoBehaviour
 {
     LineRenderer lr;
+    Transform catchedObj;
+    public float throwPower = 10;
 
     void Start()
     {
@@ -14,8 +16,10 @@ public class LeftHandTouch : MonoBehaviour
 
     void Update()
     {
-        DrawGuideLine();
+        //DrawGuideLine();
         ChangeStatus();
+        CatchObj();
+        DropObj();
     }
 
     void DrawGuideLine()
@@ -38,7 +42,7 @@ public class LeftHandTouch : MonoBehaviour
 
     void ChangeStatus()
     {
-        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch))
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch))
         {
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Ray ray = new Ray(transform.position, transform.forward);
@@ -46,10 +50,58 @@ public class LeftHandTouch : MonoBehaviour
 
             if (Physics.SphereCast(ray, 0.1f, out hit, 10f))
             {
+                if (hit.transform.tag != "energy") return;
+
                 Material mt = hit.transform.GetComponent<MeshRenderer>().material;
                 mt.color = Color.red;
                 MissionManager.instance.EnergyMission(1);
             }
         }
+    }
+
+    void CatchObj()
+    {
+        if(OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        {
+            Ray ray = new Ray(transform.position, transform.forward);
+            RaycastHit hit;
+
+            if(Physics.SphereCast(ray, 0.5f, out hit, 100))
+            {
+                if (hit.transform.tag != "Bottle") return;
+
+                catchedObj = hit.transform;
+                hit.transform.SetParent(transform);
+                Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
+                rb.isKinematic = true;
+                hit.transform.position = transform.position;
+
+            }
+        }
+    }
+
+    void DropObj()
+    {
+        if (catchedObj == null) return;
+
+        if (OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        {
+            Ray ray = new Ray(transform.position, transform.forward);
+
+            catchedObj.SetParent(null);
+            catchedObj.GetComponent<Rigidbody>().isKinematic = false;
+
+            ThrowObj();
+                
+            catchedObj = null;
+        }
+        
+    }
+
+    void ThrowObj()
+    {
+        Rigidbody rb = catchedObj.GetComponent<Rigidbody>();
+        rb.velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch) * throwPower;
+        rb.angularVelocity = OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.LTouch);
     }
 }
