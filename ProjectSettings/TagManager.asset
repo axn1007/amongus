@@ -7,6 +7,8 @@ TagManager:
   - vent
   - Bottle
   - lever
+  - energy
+  - Weed
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - Player
   - SpaceTrash
   - Wall
-  - 
-  - 
+  - Weed
+  - Cube
   - 
   - 
   - 

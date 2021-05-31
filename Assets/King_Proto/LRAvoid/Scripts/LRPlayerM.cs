@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerM : MonoBehaviour
+public class LRPlayerM : MonoBehaviour
 {
     public float speed = 5;
 
@@ -32,6 +32,7 @@ public class PlayerM : MonoBehaviour
         {
             print("Ãæµ¹");
             Destroy(gameObject);
+            print("Mission Failed...");
         }
         if(collision.gameObject.layer == 9)
         {

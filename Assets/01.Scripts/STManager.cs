@@ -36,6 +36,8 @@ public class STManager : MonoBehaviour
             //우주쓰레기를 우주쓰레기매니저 위치에 놓는다
             ST.transform.position = transform.position;
 
+
+
         }
         yield return new WaitForSeconds(5);
         print("Mission Clear!!!!!");
