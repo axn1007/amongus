@@ -14,7 +14,7 @@ public class MoveObj : MonoBehaviour
 
     void Update()
     {
-        DrawGuideLine();
+        //DrawGuideLine();
         Catch();
         Drop();
     }

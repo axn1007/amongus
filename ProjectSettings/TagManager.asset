@@ -8,6 +8,8 @@ TagManager:
   - Bottle
   - lever
   - energy
+  - fire
+  - button
   layers:
   - Default
   - TransparentFX

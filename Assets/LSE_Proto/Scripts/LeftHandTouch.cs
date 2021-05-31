@@ -8,6 +8,8 @@ public class LeftHandTouch : MonoBehaviour
     LineRenderer lr;
     Transform catchedObj;
     public float throwPower = 3;
+    public float pressTime = 5.0f;
+    float curTime;
 
     void Start()
     {
@@ -21,6 +23,7 @@ public class LeftHandTouch : MonoBehaviour
         ChangeStatus();
         CatchObj();
         DropObj();
+        PressButtons();
     }
 
     void DrawGuideLine()
@@ -104,5 +107,31 @@ public class LeftHandTouch : MonoBehaviour
         Rigidbody rb = catchedObj.GetComponent<Rigidbody>();
         rb.velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch) * throwPower;
         rb.angularVelocity = OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
+    }
+
+    void PressButtons()
+    {
+        if (Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.RTouch))
+        {
+            //Ray ray = getCamera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = new Ray(transform.position, transform.forward);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.tag != "button") return;
+
+                curTime += Time.deltaTime;
+                string objectName = hit.collider.gameObject.name;
+
+                if (curTime > pressTime)
+                {
+                    print(objectName + " Mission Complete!");
+                    MissionManager.instance.ButtonMission(1);
+                    curTime = 0;
+                    Destroy(hit.collider.gameObject);
+                }
+            }
+        }
     }
 }

@@ -39,7 +39,7 @@ public class MissionManager : MonoBehaviour
     {
         scanCount += count;
 
-        if(scanCount == 5)
+        if(scanCount == 4)
         {
             print("ScanMission Complete");
             ManagerMaster(1);
@@ -50,7 +50,7 @@ public class MissionManager : MonoBehaviour
     {
         btnCount += count;
 
-        if(btnCount == 3)
+        if(btnCount == 2)
         {
             print("PressButtonMission Complete");
             ManagerMaster(1);

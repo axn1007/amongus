@@ -23,7 +23,7 @@ public class Scan : MonoBehaviour
             }
         }
 
-        if(other.transform.tag == "Bottle")
+        if(other.transform.name == "Bottle2")
         {
             curTime += Time.deltaTime;
 
