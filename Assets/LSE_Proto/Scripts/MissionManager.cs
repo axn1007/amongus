@@ -12,7 +12,7 @@ public class MissionManager : MonoBehaviour
     int btnCount;
     int bottleCount;
     int leverCount;
-    int energyCount;
+    public int energyCount;
     int fireCount;
     private void Awake()
     {

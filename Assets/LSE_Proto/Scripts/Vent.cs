@@ -52,7 +52,9 @@ public class Vent : MonoBehaviour
         {
             print("this is energy");
 
-            if(Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            if (MissionManager.instance.energyCount == 1) return;
+
+            if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
                 energyUI.SetActive(true);
             }

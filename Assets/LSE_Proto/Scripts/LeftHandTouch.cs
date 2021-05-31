@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LeftHandTouch : MonoBehaviour
 {
     LineRenderer lr;
     Transform catchedObj;
-    public float throwPower = 10;
+    public float throwPower = 3;
 
     void Start()
     {
@@ -101,7 +102,7 @@ public class LeftHandTouch : MonoBehaviour
     void ThrowObj()
     {
         Rigidbody rb = catchedObj.GetComponent<Rigidbody>();
-        rb.velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch) * throwPower;
-        rb.angularVelocity = OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.LTouch);
+        rb.velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch) * throwPower;
+        rb.angularVelocity = OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
     }
 }

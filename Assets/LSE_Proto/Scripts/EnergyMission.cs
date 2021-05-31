@@ -25,7 +25,7 @@ public class EnergyMission : MonoBehaviour
         {
             if(energyBool[i] != false)
             {
-                energyButton[i].SetActive(true);
+                energyButton[i].GetComponent<BoxCollider>().enabled = true;
             }
         }
     }
