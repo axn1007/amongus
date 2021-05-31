@@ -7,6 +7,7 @@ public class Vent : MonoBehaviour
     public GameObject ventUI;
     public GameObject leverUI;
     public GameObject energyUI;
+    public GameObject puzzleUI;
     public static Vent instance;
     public bool sliderBool;
 
@@ -57,6 +58,16 @@ public class Vent : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
                 energyUI.SetActive(true);
+            }
+        }
+
+        if(other.transform.tag == "puzzle")
+        {
+            print("this is puzzle");
+
+            if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            {
+                puzzleUI.SetActive(true);
             }
         }
     }

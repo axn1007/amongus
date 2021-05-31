@@ -10,6 +10,7 @@ TagManager:
   - energy
   - fire
   - button
+  - puzzle
   layers:
   - Default
   - TransparentFX

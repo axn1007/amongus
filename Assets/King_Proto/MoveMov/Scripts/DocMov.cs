@@ -6,6 +6,7 @@ public class DocMov : MonoBehaviour
 {
     //public GameObject doc;
     public GameObject pos;
+    public GameObject poss;
     //public GameObject docFactory;
     public float speed = 0.05f;
 
@@ -26,10 +27,21 @@ public class DocMov : MonoBehaviour
             if (Physics.SphereCast(ray, 10f, out hit, 100f, LayerMask.NameToLayer("Cube")))
             {
                 print("∑π¿Ã∏¶ ΩÙ");
+                //transform.position = Vector3.Slerp(transform.position, poss.transform.position, speed);
                 transform.position = Vector3.Slerp(transform.position, pos.transform.position, speed);
             }
         }
+
+            
+        
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.name == "Pos")
+        {
+            print("Mission Clear!!!!!!!");
+        }
+    }
     
 }
