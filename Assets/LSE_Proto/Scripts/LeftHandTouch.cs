@@ -10,6 +10,12 @@ public class LeftHandTouch : MonoBehaviour
     public float throwPower = 3;
     public float pressTime = 5.0f;
     float curTime;
+    
+    public GameObject pos;
+    public GameObject doc;
+    public Transform middlePos;
+    public Transform startPos;
+    public float speed = 1f;
 
     void Start()
     {
@@ -19,29 +25,8 @@ public class LeftHandTouch : MonoBehaviour
 
     void Update()
     {
-        //DrawGuideLine();
         ChangeStatus();
-        CatchObj();
-        DropObj();
         PressButtons();
-    }
-
-    void DrawGuideLine()
-    {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, hit.point);
-        }
-
-        else
-        {
-            lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, transform.position + transform.forward * 1);
-        }
     }
 
     void ChangeStatus()
@@ -63,55 +48,11 @@ public class LeftHandTouch : MonoBehaviour
         }
     }
 
-    void CatchObj()
-    {
-        if(OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
-        {
-            Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit hit;
-
-            if(Physics.SphereCast(ray, 0.5f, out hit, 100))
-            {
-                if (hit.transform.tag != "Bottle") return;
-
-                catchedObj = hit.transform;
-                hit.transform.SetParent(transform);
-                Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
-                rb.isKinematic = true;
-                hit.transform.position = transform.position;
-
-            }
-        }
-    }
-
-    void DropObj()
-    {
-        if (catchedObj == null) return;
-
-        if (OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.RTouch))
-        {
-            Ray ray = new Ray(transform.position, transform.forward);
-
-            catchedObj.SetParent(null);
-            catchedObj.GetComponent<Rigidbody>().isKinematic = false;
-
-            ThrowObj();
-                
-            catchedObj = null;
-        }
-        
-    }
-
-    void ThrowObj()
-    {
-        Rigidbody rb = catchedObj.GetComponent<Rigidbody>();
-        rb.velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch) * throwPower;
-        rb.angularVelocity = OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch);
-    }
-
     void PressButtons()
     {
-        if (Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.RTouch))
+        float fire = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
+        if (fire > 0)
+        //if (Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
             //Ray ray = getCamera.ScreenPointToRay(Input.mousePosition);
             Ray ray = new Ray(transform.position, transform.forward);
@@ -119,19 +60,35 @@ public class LeftHandTouch : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag != "button") return;
-
-                curTime += Time.deltaTime;
-                string objectName = hit.collider.gameObject.name;
-
-                if (curTime > pressTime)
+                if(hit.transform.tag == "button")
                 {
-                    print(objectName + " Mission Complete!");
-                    MissionManager.instance.ButtonMission(1);
-                    curTime = 0;
-                    Destroy(hit.collider.gameObject);
+                    curTime += Time.deltaTime;
+                    string objectName = hit.collider.gameObject.name;
+
+                    if (curTime > pressTime)
+                    {
+                        print(objectName + " Mission Complete!");
+                        MissionManager.instance.ButtonMission(1);
+                        curTime = 0;
+                        Destroy(hit.collider.gameObject);
+                    }
+
                 }
             }
+
+            if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Btn")))
+            {
+                curTime += Time.deltaTime;
+                doc.transform.position = GetPoint(startPos.position, middlePos.position, pos.transform.position, curTime / 3);
+            }
         }
+    }
+
+    Vector3 GetPoint(Vector3 s, Vector3 m, Vector3 e, float ratio)
+    {
+        Vector3 p1 = Vector3.Lerp(s, m, ratio);
+        Vector3 p2 = Vector3.Lerp(m, e, ratio);
+        Vector3 p3 = Vector3.Lerp(p1, p2, ratio);
+        return p3;
     }
 }

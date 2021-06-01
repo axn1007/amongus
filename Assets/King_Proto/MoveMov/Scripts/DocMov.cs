@@ -5,27 +5,28 @@ using UnityEngine;
 public class DocMov : MonoBehaviour
 {
     //public GameObject doc;
-    public GameObject pos;
-    LineRenderer lr;
-    public Transform middlePos;
-    public Transform startPos;
-    float currTime;
-    public float speed = 1f;
+    //public GameObject pos;
+    //LineRenderer lr;
+    //public Transform middlePos;
+    //public Transform startPos;
+    //float currTime;
+    //public float speed = 1f;
 
     void Start()
     {
-        lr = middlePos.GetComponent<LineRenderer>();
+      //  lr = middlePos.GetComponent<LineRenderer>();
     }
 
     void Update()
     {
+        /*
         //lr.positionCount = 0;
         //for (int i = 0; i < 20; i++)
         //{
         //    lr.positionCount++;
         //    lr.SetPosition(lr.positionCount - 1, GetPoint(startPos.position, middlePos.position, pos.transform.position, i / 20.0f));
         //}
-
+        
         if (Input.GetMouseButton(0))
         {
 
@@ -46,6 +47,7 @@ public class DocMov : MonoBehaviour
                 //transform.position = Vector3.Slerp(transform.position, pos.transform.position, speed);
             }
         }
+        */
     }
 
     private void OnTriggerEnter(Collider other)
@@ -55,7 +57,7 @@ public class DocMov : MonoBehaviour
             print("Mission Clear!!!!!!!");
         }
     }
-
+/*
     Vector3 GetPoint(Vector3 s, Vector3 m, Vector3 e, float ratio)
     {
         Vector3 p1 = Vector3.Lerp(s, m, ratio);
@@ -63,5 +65,5 @@ public class DocMov : MonoBehaviour
         Vector3 p3 = Vector3.Lerp(p1, p2, ratio);
         return p3;
     }
-    
+  */  
 }

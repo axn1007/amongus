@@ -18,7 +18,8 @@ public class PuzzleColor : MonoBehaviour
     public void OnClickColorChange()
     {
         print("클릭");
-        Image im = GetComponent<Image>();
+        RawImage im = GetComponent<RawImage>();
+        //Image im = GetComponent<Image>();
         im.color = Color.gray;
 
         //클릭하면 다시 못누르게

@@ -7,7 +7,7 @@ public class Puzzle : MonoBehaviour
 {
     public static Puzzle instance ;
 
-    public List<Image> image = new List<Image>();
+    public List<RawImage> image = new List<RawImage>();
     public List<int> num = new List<int>();
 
     //비교할 변수
@@ -64,9 +64,10 @@ public class Puzzle : MonoBehaviour
                 if (clickValue[i] != clearNum[i])
                 {
                     print("Mission Failed");
+                    return;
                 }
             }
-             print("Mission Clear!!!!!!!");
+            print("Mission Clear!!!!!!!");
     }
     
 }
