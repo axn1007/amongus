@@ -21,7 +21,7 @@ public class BasketCount : MonoBehaviour
         count++;
         print("잡초가 담겼습니다");
 
-        if(count == 5)
+        if(count == 8)
         {
             print("Mission Crear!!!!!!!!!");
         }
