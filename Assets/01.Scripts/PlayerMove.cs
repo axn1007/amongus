@@ -1,8 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class PlayerMove : MonoBehaviour
+using Photon.Pun;
+
+public class PlayerMove : MonoBehaviourPun, IPunObservable
 {
+
+    Vector3 setPos;
+    Quaternion setRot;
+    float dir_speed = 0;
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+            stream.SendNext(anim.GetFloat("Speed"));
+        }
+
+        else if (stream.IsReading)
+        {
+            setPos = (Vector3)stream.ReceiveNext();
+            setRot = (Quaternion)stream.ReceiveNext();
+            dir_speed = (float)stream.ReceiveNext();
+        }
+    }
+
+
     enum PlayerState
     {
         Idle,
@@ -15,7 +41,7 @@ public class PlayerMove : MonoBehaviour
     PlayerState state;
 
     //애니메이터
-    Animator anim;
+    public Animator anim;
 
     float h;
     float v;
@@ -24,7 +50,7 @@ public class PlayerMove : MonoBehaviour
     public float moveSpeed = 5.0f;
     public float rotSpeed = 3.0f;
 
-    public Camera playerCam;
+    public GameObject playerCam;
 
     public int rotSpe = 60;
 
@@ -42,7 +68,8 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        
+        playerCam.SetActive(photonView.IsMine);
+
         //게임 시작 전에는 Idle 상태
         state = PlayerState.Idle;
 
@@ -59,35 +86,35 @@ public class PlayerMove : MonoBehaviour
         switch (state)
         {
             case PlayerState.Idle:
-                Idle();
+                photonView.RPC("Idle", RpcTarget.All);
                 break;
             case PlayerState.Walk:
-                Walk();
+                photonView.RPC("Walk", RpcTarget.All);
                 break;
             case PlayerState.Attack:
-                Attack();
+                photonView.RPC("Attack", RpcTarget.All);
                 break;
             case PlayerState.Die:
-                Die();
+                photonView.RPC("Die", RpcTarget.All);
                 break;
-            case PlayerState.Ghost:
-                Ghost();
-                break;
+            //case PlayerState.Ghost:
+            //    Ghost();
+            //    break;
             default:
                 break;
         }
 
     }
 
+    [PunRPC]
     void Idle()
     {
 
         //만약 게임플레이 시작하면
-        if(h != 0 || v != 0)
+        if(v != 0)
         {
             //Walk상태로 전이
             state = PlayerState.Walk;
-            print("상태 전환 : Idle -> Walk");
             //Walk애니로 변경
             anim.SetTrigger("Walk");
         }
@@ -96,7 +123,6 @@ public class PlayerMove : MonoBehaviour
         {
             //Attack 상태로 전이
             state = PlayerState.Attack;
-            print("상태 전환 : Idle -> Attack");
             //Attack 애니로 변경
             anim.SetTrigger("Attack");
             isAttack = true;
@@ -109,30 +135,31 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    [PunRPC]
     void Walk()
     {
-        if (h == 0 && v == 0)
-        {
-            //Walk상태로 전이
-            state = PlayerState.Idle;
-            print("상태 전환 : Walk -> Idle");
-            //Walk애니로 변경
-            anim.SetTrigger("Idle");
-        }
+            if (v == 0)
+            {
+                //Walk상태로 전이
+                state = PlayerState.Idle;
+                //Walk애니로 변경
+                anim.SetTrigger("Idle");
+            }
 
-        //만약 공격버튼(스페이스)을 누르면
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            
-            //Attack 상태로 전이
-            state = PlayerState.Attack;
-            print("상태 전환 : Walk -> Attack");
-            //Attack 애니로 변경
-            anim.SetTrigger("Attack");
-            isAttack = true;
-        }
+            //만약 공격버튼(스페이스)을 누르면
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+
+                //Attack 상태로 전이
+                state = PlayerState.Attack;
+                //Attack 애니로 변경
+                anim.SetTrigger("Attack");
+                isAttack = true;
+            }
+        
     }
 
+    [PunRPC]
     void Attack()
     {
         Invoke("AttackKnife", 0.5f);
@@ -142,8 +169,7 @@ public class PlayerMove : MonoBehaviour
         {
             state = PlayerState.Idle;
             anim.SetTrigger("Idle");
-            print("상태 전환 : Attack -> Idle");
-
+       
             currTime = 0;
         }
     }
@@ -166,48 +192,64 @@ public class PlayerMove : MonoBehaviour
         isAttack = false;
     }
 
+    [PunRPC]
     void Die()
     {
         //Ghost 상태로 전이
         state = PlayerState.Ghost;
-        print("상태 전환 : Die -> Ghost");
         //Ghost 애니로 변경
         anim.SetTrigger("Ghost");
     }
-
+    /*
     void Ghost()
     {
         MoveCtrl();
     }
+    */
 
-    public void MoveCtrl()
+    void MoveCtrl()
     {
-        //h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+        if (photonView.IsMine)
+        {
+            v = Input.GetAxis("Vertical");
 
-        Vector3 dir = new Vector3(0, 0, v);
-        dir.Normalize();
+            Vector3 dir = new Vector3(0, 0, v);
+            dir.Normalize();
 
-        //밑에랑 같은거 아래를 보거나 위를 봐도 땅을 걷는 느낌 transform.Translate(dir * moveSpeed * Time.deltaTime);
-        dir = Camera.main.transform.TransformDirection(dir);
-        dir.y = 0;
+            //밑에랑 같은거 아래를 보거나 위를 봐도 땅을 걷는 느낌 transform.Translate(dir * moveSpeed * Time.deltaTime);
+            dir = Camera.main.transform.TransformDirection(dir);
+            dir.y = 0;
 
-        transform.position += dir * moveSpeed * Time.deltaTime;
+            transform.position += dir * moveSpeed * Time.deltaTime;
 
-        Vector2 joyStick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch);
+            Vector2 joyStick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch);
 
-        transform.Rotate(0, joyStick.x * rotSpe * Time.deltaTime, 0);
+            transform.Rotate(0, joyStick.x * rotSpe * Time.deltaTime, 0);
+        }
+
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, setPos, 0.2f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, setRot, 0.2f);
+
+            anim.SetFloat("Speed", dir_speed);
+        }
+        
     }
 
     void RotCtrl()  //마우스 Up, Down 각도 제한 범위 설정 해줘야함 360도 돌아가니까   Mathf
     {
-        float rotX = Input.GetAxis("Mouse Y") * rotSpeed;
-        float rotY = Input.GetAxis("Mouse X") * rotSpeed;
+        if (photonView.IsMine)
+        {
+            float rotX = Input.GetAxis("Mouse Y") * rotSpeed;
+            float rotY = Input.GetAxis("Mouse X") * rotSpeed;
 
-        rotX = Mathf.Clamp(rotX, -90, 90);
+            rotX = Mathf.Clamp(rotX, -90, 90);
 
-        transform.localRotation *= Quaternion.Euler(0, rotY, 0);
-        Camera.main.transform.localRotation *= Quaternion.Euler(-rotX, 0, 0);
+            transform.localRotation *= Quaternion.Euler(0, rotY, 0);
+            Camera.main.transform.localRotation *= Quaternion.Euler(-rotX, 0, 0);
+        }
+
     }
 
     public void OnCollisionEnter(Collision collision)
