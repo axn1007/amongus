@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class LeftHandTouch : MonoBehaviour
 {
-    LineRenderer lr;
     Transform catchedObj;
     public float throwPower = 3;
     public float pressTime = 5.0f;
@@ -16,10 +15,10 @@ public class LeftHandTouch : MonoBehaviour
     public Transform middlePos;
     public Transform startPos;
     public float speed = 1f;
+    public int count;
 
     void Start()
     {
-        lr = GetComponent<LineRenderer>();
 
     }
 
@@ -27,6 +26,7 @@ public class LeftHandTouch : MonoBehaviour
     {
         ChangeStatus();
         PressButtons();
+        DestroyTrash();
     }
 
     void ChangeStatus()
@@ -90,5 +90,38 @@ public class LeftHandTouch : MonoBehaviour
         Vector3 p2 = Vector3.Lerp(m, e, ratio);
         Vector3 p3 = Vector3.Lerp(p1, p2, ratio);
         return p3;
+    }
+
+    void DestroyTrash()
+    {
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch))
+        {
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = new Ray(transform.position, transform.forward);
+            RaycastHit hit;
+
+            if (Physics.SphereCast(ray, 0.1f, out hit, 10f))
+            {
+
+                if (hit.transform.tag != "trash") return;
+
+                if (hit.transform != null)
+                {
+                    Destroy(hit.collider.gameObject);
+                    print("우주 쓰레기 제거!");
+                    count++;
+                    print("우주 쓰레기가 담겼어요");
+                }
+            }
+            StCount();
+        }
+    }
+
+    void StCount()
+    {
+        if (count == 6)
+        {
+            print("Mission Clear!!!!!");
+        }
     }
 }

@@ -18,6 +18,7 @@ public class ClickDistroy : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform != null)
@@ -35,7 +36,7 @@ public class ClickDistroy : MonoBehaviour
 
     void StCount()
     {
-        if(count == 5)
+        if(count == 6)
         {
             print("Mission Clear!!!!!");
         }
