@@ -26,6 +26,8 @@ public class PlayerMove : MonoBehaviour
 
     public Camera playerCam;
 
+    public int rotSpe = 60;
+
     //Knife 공장
     public GameObject knifeFactory;
     //발사위치
@@ -180,10 +182,10 @@ public class PlayerMove : MonoBehaviour
 
     public void MoveCtrl()
     {
-        h = Input.GetAxis("Horizontal");
+        //h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
 
-        Vector3 dir = new Vector3(h, 0, v);
+        Vector3 dir = new Vector3(0, 0, v);
         dir.Normalize();
 
         //밑에랑 같은거 아래를 보거나 위를 봐도 땅을 걷는 느낌 transform.Translate(dir * moveSpeed * Time.deltaTime);
@@ -191,6 +193,10 @@ public class PlayerMove : MonoBehaviour
         dir.y = 0;
 
         transform.position += dir * moveSpeed * Time.deltaTime;
+
+        Vector2 joyStick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch);
+
+        transform.Rotate(0, joyStick.x * rotSpe * Time.deltaTime, 0);
     }
 
     void RotCtrl()  //마우스 Up, Down 각도 제한 범위 설정 해줘야함 360도 돌아가니까   Mathf
@@ -201,7 +207,7 @@ public class PlayerMove : MonoBehaviour
         rotX = Mathf.Clamp(rotX, -90, 90);
 
         transform.localRotation *= Quaternion.Euler(0, rotY, 0);
-        playerCam.transform.localRotation *= Quaternion.Euler(-rotX, 0, 0);
+        Camera.main.transform.localRotation *= Quaternion.Euler(-rotX, 0, 0);
     }
 
     public void OnCollisionEnter(Collision collision)
