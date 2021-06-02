@@ -5,11 +5,11 @@ using UnityEngine;
 public class MoveObj : MonoBehaviour
 { 
     Transform catchedObj;
-    LineRenderer lr;
+    //LineRenderer lr;
 
     void Start()
     {
-        lr = GetComponent<LineRenderer>();
+        //lr = GetComponent<LineRenderer>();
     }
 
     void Update()
@@ -19,23 +19,23 @@ public class MoveObj : MonoBehaviour
         Drop();
     }
 
-    void DrawGuideLine()
-    {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
+    //void DrawGuideLine()
+    //{
+    //    Ray ray = new Ray(transform.position, transform.forward);
+    //    RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
-        {
-            lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, hit.point);
-        }
+    //    if (Physics.Raycast(ray, out hit))
+    //    {
+    //        lr.SetPosition(0, transform.position);
+    //        lr.SetPosition(1, hit.point);
+    //    }
 
-        else
-        {
-            lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, transform.position + transform.forward * 1);
-        }
-    }
+    //    else
+    //    {
+    //        lr.SetPosition(0, transform.position);
+    //        lr.SetPosition(1, transform.position + transform.forward * 1);
+    //    }
+    //}
 
     void Catch()
     {

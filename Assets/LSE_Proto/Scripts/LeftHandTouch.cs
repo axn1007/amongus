@@ -31,13 +31,13 @@ public class LeftHandTouch : MonoBehaviour
 
     void ChangeStatus()
     {
-        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch))
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
 
-            if (Physics.SphereCast(ray, 0.1f, out hit, 10f))
+            if (Physics.SphereCast(ray, 0.1f, out hit, 1))
             {
                 if (hit.transform.tag != "energy") return;
 
@@ -50,9 +50,9 @@ public class LeftHandTouch : MonoBehaviour
 
     void PressButtons()
     {
-        float fire = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
-        if (fire > 0)
-        //if (Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        //float fire = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
+        //if (fire > 0)
+        if (Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
             //Ray ray = getCamera.ScreenPointToRay(Input.mousePosition);
             Ray ray = new Ray(transform.position, transform.forward);
@@ -94,13 +94,13 @@ public class LeftHandTouch : MonoBehaviour
 
     void DestroyTrash()
     {
-        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch))
+        if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
 
-            if (Physics.SphereCast(ray, 0.1f, out hit, 10f))
+            if (Physics.SphereCast(ray, 0.1f, out hit, 1))
             {
 
                 if (hit.transform.tag != "trash") return;

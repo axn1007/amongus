@@ -26,13 +26,13 @@ public class RightHandGrab : MonoBehaviour
 
     void GrabObj()
     {
-        float v = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch);
+        float v = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         if (v > 0)
         {
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
 
-            if (Physics.SphereCast(ray, 0.5f, out hit, 100))
+            if (Physics.SphereCast(ray, 0.5f, out hit, 1))
             {
                 if (hit.transform.tag != "Bottle") return;
 
@@ -49,7 +49,7 @@ public class RightHandGrab : MonoBehaviour
     {
         if (catchedObj == null) return;
 
-        float v = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch);
+        float v = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         if (v == 0)
         {
             Ray ray = new Ray(transform.position, transform.forward);
@@ -65,13 +65,13 @@ public class RightHandGrab : MonoBehaviour
 
     void CatchObj()
     {
-        float v = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch);
+        float v = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         if (v > 0)
         {
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
 
-            if (Physics.SphereCast(ray, 0.5f, out hit, 10f))
+            if (Physics.SphereCast(ray, 0.5f, out hit, 1))
             {
                 if (hit.transform.tag != "Weed") return;
 
@@ -88,7 +88,7 @@ public class RightHandGrab : MonoBehaviour
     {
         if (catchedObj == null) return;
 
-        float v = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch);
+        float v = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         
         if (v > 0) 
         {
