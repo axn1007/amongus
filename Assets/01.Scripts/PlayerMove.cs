@@ -10,21 +10,18 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     Quaternion setRot;
     float dir_speed = 0;
 
-
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-            stream.SendNext(anim.GetFloat("Speed"));
         }
 
         else if (stream.IsReading)
         {
             setPos = (Vector3)stream.ReceiveNext();
             setRot = (Quaternion)stream.ReceiveNext();
-            dir_speed = (float)stream.ReceiveNext();
         }
     }
 
@@ -42,8 +39,6 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
 
     //애니메이터
     public Animator anim;
-
-    float h;
     float v;
 
     //속력
@@ -86,56 +81,59 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         switch (state)
         {
             case PlayerState.Idle:
-                photonView.RPC("Idle", RpcTarget.All);
+                Idle();
                 break;
             case PlayerState.Walk:
-                photonView.RPC("Walk", RpcTarget.All);
+                Walk();
                 break;
             case PlayerState.Attack:
-                photonView.RPC("Attack", RpcTarget.All);
+                Attack();
                 break;
             case PlayerState.Die:
-                photonView.RPC("Die", RpcTarget.All);
+                Die();
                 break;
-            //case PlayerState.Ghost:
-            //    Ghost();
-            //    break;
+            case PlayerState.Ghost:
+                Ghost();
+                break;
             default:
                 break;
         }
 
     }
 
-    [PunRPC]
     void Idle()
     {
-
         //만약 게임플레이 시작하면
         if(v != 0)
         {
             //Walk상태로 전이
             state = PlayerState.Walk;
             //Walk애니로 변경
-            anim.SetTrigger("Walk");
+            //anim.SetTrigger("Walk");
+            photonView.RPC("AniTrigger", RpcTarget.All, "Walk");
         }
+
         //만약 공격버튼(스페이스)을 누르면
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //Attack 상태로 전이
-            state = PlayerState.Attack;
-            //Attack 애니로 변경
-            anim.SetTrigger("Attack");
-            isAttack = true;
+            if (photonView.IsMine)
+            {
+                //Attack 상태로 전이
+                state = PlayerState.Attack;
+                //Attack 애니로 변경
+                //anim.SetTrigger("Attack");
+                photonView.RPC("AniTrigger", RpcTarget.AllBuffered, "Attack");
+                isAttack = true;
+            }
         }
+
         //만약 칼에 닿으면
-        
         {
             //Die 상태로 전이
             //Die 애니로 변경
         }
     }
 
-    [PunRPC]
     void Walk()
     {
             if (v == 0)
@@ -143,23 +141,25 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
                 //Walk상태로 전이
                 state = PlayerState.Idle;
                 //Walk애니로 변경
-                anim.SetTrigger("Idle");
+                //anim.SetTrigger("Idle");
+                photonView.RPC("AniTrigger", RpcTarget.All, "Idle");
             }
 
             //만약 공격버튼(스페이스)을 누르면
             if (Input.GetKeyDown(KeyCode.Space))
             {
-
-                //Attack 상태로 전이
-                state = PlayerState.Attack;
-                //Attack 애니로 변경
-                anim.SetTrigger("Attack");
-                isAttack = true;
+                if(photonView.IsMine)
+                {
+                    //Attack 상태로 전이
+                    state = PlayerState.Attack;
+                    //Attack 애니로 변경
+                    //anim.SetTrigger("Attack");
+                    photonView.RPC("AniTrigger", RpcTarget.All, "Attack");
+                    isAttack = true;
+                }
             }
-        
     }
 
-    [PunRPC]
     void Attack()
     {
         Invoke("AttackKnife", 0.5f);
@@ -168,8 +168,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         if (currTime > attackTime)
         {
             state = PlayerState.Idle;
-            anim.SetTrigger("Idle");
-       
+            //anim.SetTrigger("Idle");
+            photonView.RPC("AniTrigger", RpcTarget.All, "Idle");
             currTime = 0;
         }
     }
@@ -192,20 +192,25 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         isAttack = false;
     }
 
-    [PunRPC]
     void Die()
     {
         //Ghost 상태로 전이
         state = PlayerState.Ghost;
         //Ghost 애니로 변경
-        anim.SetTrigger("Ghost");
+        //anim.SetTrigger("Ghost");
+        photonView.RPC("AniTrigger", RpcTarget.All, "Ghost");
     }
-    /*
+    
     void Ghost()
     {
         MoveCtrl();
     }
-    */
+    
+    [PunRPC]
+    void AniTrigger(string state)
+    {
+        anim.SetTrigger(state);
+    }
 
     void MoveCtrl()
     {
@@ -249,7 +254,6 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             transform.localRotation *= Quaternion.Euler(0, rotY, 0);
             Camera.main.transform.localRotation *= Quaternion.Euler(-rotX, 0, 0);
         }
-
     }
 
     public void OnCollisionEnter(Collision collision)

@@ -7,21 +7,17 @@ public class RightHandGrab : MonoBehaviour
     Transform catchedObj;
     public float throwPower = 3;
     public float pressTime = 5.0f;
-    float curTime;
 
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         GrabObj();
         CatchObj();
         DropObj();
-        //LocateObj();
-        
     }
 
     void GrabObj()
@@ -50,10 +46,9 @@ public class RightHandGrab : MonoBehaviour
         if (catchedObj == null) return;
 
         float v = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
+
         if (v == 0)
         {
-            Ray ray = new Ray(transform.position, transform.forward);
-
             catchedObj.SetParent(null);
             catchedObj.GetComponent<Rigidbody>().isKinematic = false;
 
@@ -83,21 +78,6 @@ public class RightHandGrab : MonoBehaviour
             }
         }
     }
-    /*
-    void LocateObj()
-    {
-        if (catchedObj == null) return;
-
-        float v = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
-        
-        if (v > 0) 
-        {
-            catchedObj.SetParent(null);
-            catchedObj.GetComponent<Rigidbody>().isKinematic = false;
-            catchedObj = null;
-        }
-    }
-    */
 
     void ThrowObj()
     {

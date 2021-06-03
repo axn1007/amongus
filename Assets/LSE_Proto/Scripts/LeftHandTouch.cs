@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class LeftHandTouch : MonoBehaviour
 {
-    Transform catchedObj;
     public float throwPower = 3;
     public float pressTime = 5.0f;
     float curTime;
@@ -33,7 +32,6 @@ public class LeftHandTouch : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
 
@@ -50,11 +48,8 @@ public class LeftHandTouch : MonoBehaviour
 
     void PressButtons()
     {
-        //float fire = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
-        //if (fire > 0)
         if (Input.GetMouseButton(0) || OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
-            //Ray ray = getCamera.ScreenPointToRay(Input.mousePosition);
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
 
@@ -96,7 +91,6 @@ public class LeftHandTouch : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
 
