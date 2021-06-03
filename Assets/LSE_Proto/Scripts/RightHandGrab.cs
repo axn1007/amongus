@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class RightHandGrab : MonoBehaviour
 {
     Transform catchedObj;
     public float throwPower = 3;
     public float pressTime = 5.0f;
+
+    public PhotonView photonView;
 
     void Start()
     {
@@ -25,19 +28,21 @@ public class RightHandGrab : MonoBehaviour
         float v = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch);
         if (v > 0)
         {
-            Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit hit;
+            photonView.RPC("RpcGrabObj", RpcTarget.All);
 
-            if (Physics.SphereCast(ray, 0.5f, out hit, 1))
-            {
-                if (hit.transform.tag != "Bottle") return;
+            //Ray ray = new Ray(transform.position, transform.forward);
+            //RaycastHit hit;
 
-                catchedObj = hit.transform;
-                hit.transform.SetParent(transform);
-                Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
-                rb.isKinematic = true;
-                hit.transform.position = transform.position;
-            }
+            //if (Physics.SphereCast(ray, 0.5f, out hit, 1))
+            //{
+            //    if (hit.transform.tag != "Bottle") return;
+
+            //    catchedObj = hit.transform;
+            //    hit.transform.SetParent(transform);
+            //    Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
+            //    rb.isKinematic = true;
+            //    hit.transform.position = transform.position;
+            //}
         }
     }
 
