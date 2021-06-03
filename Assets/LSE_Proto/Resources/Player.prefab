@@ -321,6 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwPower: 10
   pressTime: 5
+  photonView: {fileID: 6879681445302267134}
 --- !u!114 &5654500468462908971
 MonoBehaviour:
   m_ObjectHideFlags: 0

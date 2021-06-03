@@ -10,6 +10,9 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     Quaternion setRot;
     float dir_speed = 0;
 
+    //ÀâÀº ³ðÀÇ Æ®·£½ºÆû
+    Transform catchedObj;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -262,6 +265,28 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         {
             Destroy(gameObject, 1);
             state = PlayerState.Die;
+        }
+    }
+
+    [PunRPC]
+    void RpcGrabObj()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+
+        if (Physics.SphereCast(ray, 0.5f, out hit, 1))
+        {
+            if (hit.transform.tag != "Bottle") return;
+
+            catchedObj = hit.transform;
+
+            if (photonView.IsMine)
+            {
+                hit.transform.SetParent(transform);
+            }
+            Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
+            rb.isKinematic = true;
+            hit.transform.localPosition = Vector3.zero;
         }
     }
 }
