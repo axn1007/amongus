@@ -67,7 +67,8 @@ public class Puzzle : MonoBehaviour
                     return;
                 }
             }
-            print("Mission Clear!!!!!!!");
+        
+        print("Mission Clear!!!!!!!"); return;
     }
     
 }

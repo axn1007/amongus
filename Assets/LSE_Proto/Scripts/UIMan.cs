@@ -52,34 +52,34 @@ public class UIMan : MonoBehaviour
     {
         print("Go to MainRoom");
         EnergyMission.instance.energyBool[0] = true;
-        Vent.instance.energyUI.SetActive(false);
+        MissionManager.instance.missionUI[1].SetActive(false);
     }
 
     public void OnClickFirstEnergy()
     {
         print("Go to FirstRoom");
         EnergyMission.instance.energyBool[1] = true;
-        Vent.instance.energyUI.SetActive(false);
+        MissionManager.instance.missionUI[1].SetActive(false);
     }
 
     public void OnClickSecondEnergy()
     {
         print("Go to SecondRoom");
         EnergyMission.instance.energyBool[2] = true;
-        Vent.instance.energyUI.SetActive(false);
+        MissionManager.instance.missionUI[1].SetActive(false);
     }
 
     public void OnClickThirdEnergy()
     {
         print("Go to ThirdRoom");
         EnergyMission.instance.energyBool[3] = true;
-        Vent.instance.energyUI.SetActive(false);
+        MissionManager.instance.missionUI[1].SetActive(false);
     }
 
     public void OnClickForthEnergy()
     {
         print("Go to ForthRoom");
         EnergyMission.instance.energyBool[4] = true;
-        Vent.instance.energyUI.SetActive(false);
+        MissionManager.instance.missionUI[1].SetActive(false);
     }
 }

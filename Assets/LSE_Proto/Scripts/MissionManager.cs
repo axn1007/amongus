@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MissionManager : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class MissionManager : MonoBehaviour
     int leverCount;
     public int energyCount;
     int fireCount;
+    public GameObject [] clearUI;
+
+    public GameObject[] missionUI;
+
     private void Awake()
     {
         instance = this;
@@ -76,6 +81,7 @@ public class MissionManager : MonoBehaviour
         {
             print("LeverMission Complete");
             ManagerMaster(1);
+            clearUI[0].SetActive(true);
         }
     }
 
@@ -87,6 +93,7 @@ public class MissionManager : MonoBehaviour
         {
             print("EnergyMission Complete");
             ManagerMaster(1);
+            clearUI[1].SetActive(true);
         }
     }
 
