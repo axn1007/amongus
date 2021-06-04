@@ -5,11 +5,19 @@ using UnityEngine.UI;
 
 public class UIMan : MonoBehaviour
 {
-    public GameObject[] vent;
+    GameObject[] vent;
     public GameObject player;
 
     void Start()
     {
+        
+        vent = new GameObject[] { 
+            GameObject.Find("Map/Vent/Vent1"),
+            GameObject.Find("Map/Vent/Vent2"),
+            GameObject.Find("Map/Vent/Vent3"),
+            GameObject.Find("Map/Vent/Vent4"),
+            GameObject.Find("Map/Vent/Vent5"),
+        };
         
     }
 
