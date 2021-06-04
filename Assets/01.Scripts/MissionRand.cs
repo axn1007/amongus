@@ -54,44 +54,46 @@ public class MissionRand : MonoBehaviour
         switch(missionIdx)
         {
             case 0:
-                texts[missionIdx].text = "의무실에 가서 스캔하기";
+                texts[missionOrder-1].text = "의무실에 가서 스캔하기";
                 print("의무실에 가서 스캔하기");
                 break;
             case 1:
-                texts[missionIdx].text = "레버 올리기";
+                texts[missionOrder - 1].text = "레버 올리기";
                 print("레버 올리기");
                 break;
             case 2:
-                texts[missionIdx].text = "에너지 전환하기";
+                texts[missionOrder - 1].text = "에너지 전환하기";
                 print("에너지 전환하기");
                 break;
             case 3:
-                texts[missionIdx].text = "산소통 교체하기";
+                texts[missionOrder - 1].text = "산소통 교체하기";
                 print("산소통 교체하기");
                 break;
             case 4:
-                texts[missionIdx].text = "연료 공급하기";
+                texts[missionOrder - 1].text = "연료 공급하기";
                 print("연료 공급하기");
                 break;
             case 5:
-                texts[missionIdx].text = "소화기 던져서 불 끄기";
+                texts[missionOrder - 1].text = "소화기 던져서 불 끄기";
                 print("소화기 던져서 불 끄기");
                 break;
             case 6:
-                texts[missionIdx].text = "우주쓰레기 제거하기";
+                texts[missionOrder - 1].text = "우주쓰레기 제거하기";
                 print("우주쓰레기 제거하기");
                 break;
             case 7:
-                texts[missionIdx].text = "숫자퍼즐 누르기";
+                texts[missionOrder - 1].text = "숫자퍼즐 누르기";
                 print("숫자퍼즐 누르기");
                 break;
             case 8:
-                texts[missionIdx].text = "문서 이동시키기";
+                texts[missionOrder - 1].text = "문서 이동시키기";
                 print("문서 이동시키기");
                 break;
             case 9:
-                texts[missionIdx].text = "잡초 뽑아서 우주선을 깨끗하게 만들기";
+                texts[missionOrder - 1].text = "잡초 뽑아서 우주선을 깨끗하게 만들기";
                 print("잡초 뽑아서 우주선을 깨끗하게 만들기");
+                break;
+            default:
                 break;
         }
     }

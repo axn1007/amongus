@@ -23,7 +23,7 @@ public class MoveLever : MonoBehaviour
                 MissionManager.instance.LeverMission(1);
             }
 
-            if (!Vent.instance.sliderBool) MissionManager.instance.missionUI[0].SetActive(false);
+            //if (!Vent.instance.sliderBool) MissionManager.instance.missionUI[0].SetActive(false);
         }
     }
 }
