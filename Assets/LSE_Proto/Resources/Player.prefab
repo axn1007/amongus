@@ -4789,7 +4789,7 @@ MonoBehaviour:
   knifeFactory: {fileID: 156966, guid: 15c35457c5d99e541bcb2560699d4420, type: 3}
   firePos: {fileID: 2853471132415630641}
   throwPower: 100
-  pressTime: 0
+  pressTime: 5
   catchedObj: {fileID: 0}
 --- !u!114 &2853471130857152368
 MonoBehaviour:
@@ -5845,12 +5845,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25388032a574883409f399c8a6d4930d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vent:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   player: {fileID: 2853471130857152373}
 --- !u!114 &2853471132038113609
 MonoBehaviour:
@@ -6813,7 +6807,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2853471132507452483}
   - component: {fileID: 2853471132507921181}
-  - component: {fileID: 2853471132507921180}
   m_Layer: 0
   m_Name: RightHandAnchor
   m_TagString: Untagged
@@ -6852,18 +6845,6 @@ MonoBehaviour:
   throwPower: 10
   photonView: {fileID: 3934117496774443465}
   player: {fileID: 2853471130857152371}
---- !u!114 &2853471132507921180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2853471132507891581}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08dd924074d6e6d4b9a382289fa7aef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2853471132507894249
 GameObject:
   m_ObjectHideFlags: 0
