@@ -57,7 +57,7 @@ public class RightHandGrab : MonoBehaviour
 
     void ButtonOne()
     {
-        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
             photonView.RPC("RpcButtonOne", RpcTarget.All);
         }
