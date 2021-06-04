@@ -14,13 +14,16 @@ public class MoveLever : MonoBehaviour
 
     void Update()
     {
-        if (Vent.instance.sliderBool && slider.value == 100)
+        if(Vent.instance != null)
         {
-            print("LeverMission Complete!");
-            Vent.instance.sliderBool = false;
-            MissionManager.instance.LeverMission(1);
-        }
+            if (Vent.instance.sliderBool && slider.value == 100)
+            {
+                print("LeverMission Complete!");
+                Vent.instance.sliderBool = false;
+                MissionManager.instance.LeverMission(1);
+            }
 
-        if (!Vent.instance.sliderBool) MissionManager.instance.missionUI[0].SetActive(false);
+            if (!Vent.instance.sliderBool) MissionManager.instance.missionUI[0].SetActive(false);
+        }
     }
 }
