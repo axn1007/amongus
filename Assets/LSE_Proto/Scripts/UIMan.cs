@@ -6,11 +6,10 @@ using UnityEngine.UI;
 public class UIMan : MonoBehaviour
 {
     GameObject[] vent;
-    public GameObject player;
+    public PlayerMove player;
 
     void Start()
     {
-        
         vent = new GameObject[] { 
             GameObject.Find("Map/Vent/Vent1"),
             GameObject.Find("Map/Vent/Vent2"),
@@ -40,6 +39,7 @@ public class UIMan : MonoBehaviour
 
     public void OnClickSecondZone()
     {
+        print(vent[0].gameObject.name);
         player.transform.position = vent[2].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
