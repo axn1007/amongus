@@ -32,6 +32,9 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     public Animator myAni;
     public Animator otherAni;
 
+    //등장한 플레이어들 담을 배열
+    public int[] Players;
+
     void Start()
     {
         pos = GameObject.Find("Mission/MoveMission/Pos");
@@ -93,7 +96,6 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             default:
                 break;
         }
-
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -441,6 +443,27 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             }
         }
     }
+    /*
+    //담아둔 Players배열을 랜덤으로 돌려서 첫번째를 임포스터로 선정
+    void PlayerRand()
+    {
+        Players = GameObject.GetComponents<Player>();
 
+        for (int i = 0; i < 100; i++)
+        {
+            int tamp;
+            int rand1 = Random.Range(0, Players.);
+            int rand2 = Random.Range(0, Players.Length);
 
+            tamp = Players[rand1];
+            Players[rand1] = Players[rand2];
+            Players[rand2] = tamp;
+        }
+    }
+    void OnClickImporster()
+    {
+        //게임시작버튼을 누르면 임포스터 선정
+        Random.Range()
+    }
+    */
 }
