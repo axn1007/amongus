@@ -34,7 +34,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         //Vector2 originPos = Random.insideUnitCircle * 2.0f;
         Vector2 originPos = new Vector2(54.6f, 5.6f);
-        PhotonNetwork.Instantiate("Player", new Vector3(originPos.x, 1.39f, originPos.y), Quaternion.identity);
+        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        //PhotonNetwork.Instantiate("Player", new Vector3(originPos.x, 1.39f, originPos.y), Quaternion.identity);
     }
 
 
