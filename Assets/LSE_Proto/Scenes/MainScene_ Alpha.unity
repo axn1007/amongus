@@ -41873,6 +41873,7 @@ MonoBehaviour:
   - {fileID: 544623821}
   - {fileID: 268869542}
   isEmpty: 
+  players: []
 --- !u!4 &889934284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4371191676341712, guid: facc022907d0943adb45ee8d456e61a1, type: 3}

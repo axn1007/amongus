@@ -5,6 +5,19 @@ using Photon.Pun;
 
 public class Player : MonoBehaviourPun
 {
+    public static Player instance;
+
+    public bool imposter;
+    public bool crew;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     void Start()
     {
         if(PhotonNetwork.IsMasterClient)
@@ -12,6 +25,8 @@ public class Player : MonoBehaviourPun
             Vector3 pos = GameManager.instance.GetEmptyPos();
             photonView.RPC("RpcSetInit", RpcTarget.AllBuffered, pos);
         }
+
+        GameManager.instance.AddPlayer(this);
     }
 
     void Update()

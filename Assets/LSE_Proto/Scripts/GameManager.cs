@@ -10,6 +10,17 @@ public class GameManager : MonoBehaviourPun
     public Transform[] playerPos;
     public bool[] isEmpty;
 
+    //Player 객체들이 저장될 변수
+    public List<Player> players = new List<Player>();
+
+    public void AddPlayer(Player player)
+    {
+        if(!players.Contains(player))
+        {
+            players.Add(player);
+        }
+    }
+
     private void Awake()
     {
         if(instance == null)
@@ -46,5 +57,37 @@ public class GameManager : MonoBehaviourPun
         }
 
         return Vector3.zero;
+    }
+    
+    //담아둔 Players배열을 랜덤으로 돌려서 첫번째를 임포스터로 선정
+    void PlayerRand()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            Player tamp;
+            int rand1 = Random.Range(0, players.Count);
+            int rand2 = Random.Range(0, players.Count);
+
+            tamp = players[rand1];
+            players[rand1] = players[rand2];
+            players[rand2] = tamp;
+        }
+    }
+    
+    public void OnClickImporster()
+    {
+        if (players.Count != 4) return;
+
+        //게임시작버튼을 누르면 랜덤
+        PlayerRand();
+
+        players[0].imposter = true;
+        players[0].crew = false;
+
+        for(int i = 1; i<players.Count; i++)
+        {
+            players[i].imposter = false;
+            players[i].crew = true;
+        }
     }
 }
