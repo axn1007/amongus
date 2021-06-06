@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviourPun
             if(isEmpty[i] == false)
             {
                 isEmpty[i] = true;
+
                 return playerPos[i].position;
             }
         }

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class MissionRand : MonoBehaviour
+public class MissionRand : MonoBehaviourPun
 {
     public List<int> randmis = new List<int>();
     public Text[] texts;
@@ -11,8 +12,11 @@ public class MissionRand : MonoBehaviour
 
     void Start()
     {
-        randMission();
-        missionSetting();
+        if (photonView.IsMine)
+        {
+            randMission();
+            missionSetting();
+        }
     }
 
     void Update()
