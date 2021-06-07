@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class UIMan : MonoBehaviour
+public class UIMan : MonoBehaviourPun
 {
     GameObject[] vent;
     public PlayerMove player;
-
+    
     void Start()
     {
         vent = new GameObject[] { 
@@ -16,8 +17,7 @@ public class UIMan : MonoBehaviour
             GameObject.Find("Map/Vent/Vent3"),
             GameObject.Find("Map/Vent/Vent4"),
             GameObject.Find("Map/Vent/Vent5"),
-        };
-        
+        };   
     }
 
     void Update()
@@ -27,32 +27,36 @@ public class UIMan : MonoBehaviour
 
     public void OnClickMainRoom()
     {
-        player.transform.position = vent[0].transform.position + new Vector3(0, 1, 0);
+        photonView.RPC("ventMove", RpcTarget.AllBuffered, 0);
+        //player.transform.position = vent[0].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
 
     public void OnClickFirstZone()
     {
-        player.transform.position = vent[1].transform.position + new Vector3(0, 1, 0);
+        photonView.RPC("ventMove", RpcTarget.AllBuffered, 1);
+        //player.transform.position = vent[1].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
 
     public void OnClickSecondZone()
     {
-        print(vent[0].gameObject.name);
-        player.transform.position = vent[2].transform.position + new Vector3(0, 1, 0);
+        photonView.RPC("ventMove", RpcTarget.AllBuffered, 2);
+        //player.transform.position = vent[2].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
 
     public void OnClickThirdZone()
     {
-        player.transform.position = vent[3].transform.position + new Vector3(0, 1, 0);
+        photonView.RPC("ventMove", RpcTarget.AllBuffered, 3);
+        //player.transform.position = vent[3].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
 
     public void OnClickForthZone()
     {
-        player.transform.position = vent[4].transform.position + new Vector3(0, 1, 0);
+        photonView.RPC("ventMove", RpcTarget.AllBuffered, 4);
+        //player.transform.position = vent[4].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
 
@@ -89,5 +93,11 @@ public class UIMan : MonoBehaviour
         print("Go to ForthRoom");
         EnergyMission.instance.energyBool[4] = true;
         MissionManager.instance.missionUI[1].SetActive(false);
+    }
+
+    [PunRPC]
+    void ventMove(int i)
+    {
+        player.transform.position = vent[i].transform.position + new Vector3(0, 1, 0);
     }
 }

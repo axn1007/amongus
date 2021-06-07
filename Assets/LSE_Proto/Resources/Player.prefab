@@ -6331,6 +6331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bdb72294bd83347b0c14ee22b2c130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mission: 00000000000000000000
   imposter: 0
   crew: 0
   missionUI: {fileID: 1813852573683983944}
