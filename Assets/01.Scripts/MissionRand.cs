@@ -60,7 +60,7 @@ public class MissionRand : MonoBehaviourPun
         switch(missionIdx)
         {
             case 0:
-                texts[missionOrder-1].text = "의무실에 가서 스캔하기";
+                texts[missionOrder - 1].text = "의무실에 가서 스캔하기";
                 print("의무실에 가서 스캔하기");
                 break;
             case 1:

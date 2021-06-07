@@ -59,7 +59,7 @@ public class Player : MonoBehaviourPun
     {
         float v = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LHand);
 
-        if (Input.GetKeyUp(KeyCode.Alpha5) || v > 0)
+        if (Input.GetKeyDown(KeyCode.Alpha5) || v > 0)
         {
             photonView.RPC("CallCrewPos", RpcTarget.All);
         }
