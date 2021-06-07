@@ -54,6 +54,8 @@ public class PressButton : MonoBehaviour
 
                 if (curTime > pressTime)
                 {
+                    if (Player.instance.mission[4] != true) return;
+
                     print(objectName + " Mission Complete!");
                     MissionManager.instance.ButtonMission(1);
                     curTime = 0;
