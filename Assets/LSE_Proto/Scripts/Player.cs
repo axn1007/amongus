@@ -10,6 +10,9 @@ public class Player : MonoBehaviourPun
     public bool imposter;
     public bool crew;
 
+    public GameObject missionUI;
+    public GameObject missionBar;
+
     private void Awake()
     {
         if (instance == null)
@@ -31,7 +34,7 @@ public class Player : MonoBehaviourPun
 
     void Update()
     {
-        
+        UIClick();
     }
 
     [PunRPC]
@@ -39,4 +42,19 @@ public class Player : MonoBehaviourPun
     {
         transform.position = pos + new Vector3(0, 1.39f, 0);
     }
+
+    void UIClick()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
+        {
+            missionUI.SetActive(true);
+            missionBar.SetActive(true);
+        }
+        if (Input.GetKeyUp(KeyCode.Space) || OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.LTouch))
+        {
+            missionUI.SetActive(false);
+            missionBar.SetActive(false);
+        }
+    }
 }
+

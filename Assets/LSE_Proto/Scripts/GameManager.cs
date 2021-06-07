@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviourPun
         PhotonNetwork.SerializationRate = 30;
 
         isEmpty = new bool[playerPos.Length];
+
+        StartCoroutine(ImposterRand());
     }
 
     void Update()
@@ -60,34 +62,53 @@ public class GameManager : MonoBehaviourPun
     }
     
     //담아둔 Players배열을 랜덤으로 돌려서 첫번째를 임포스터로 선정
-    void PlayerRand()
+    IEnumerator ImposterRand()
     {
-        for (int i = 0; i < 100; i++)
+        while(players.Count != 4)
         {
-            Player tamp;
-            int rand1 = Random.Range(0, players.Count);
-            int rand2 = Random.Range(0, players.Count);
+            yield return null;
+        }
 
-            tamp = players[rand1];
-            players[rand1] = players[rand2];
-            players[rand2] = tamp;
+        if(players.Count == 4)
+        {
+            print("랜덤!");
+            for (int i = 0; i < 100; i++)
+            {
+                Player tamp;
+                int rand1 = Random.Range(0, players.Count);
+                int rand2 = Random.Range(0, players.Count);
+
+                tamp = players[rand1];
+                players[rand1] = players[rand2];
+                players[rand2] = tamp;
+            }
+
+            players[0].imposter = true;
+            players[0].crew = false;
+
+            for (int i = 1; i < players.Count; i++)
+            {
+                players[i].imposter = false;
+                players[i].crew = true;
+            }
         }
     }
     
     public void OnClickImporster()
     {
-        if (players.Count != 4) return;
+        print("클릭!");
 
-        //게임시작버튼을 누르면 랜덤
-        PlayerRand();
+        ////게임시작버튼을 누르면 랜덤
+        //ImposterRand();
+        //print("랜덤 클릭!");
 
-        players[0].imposter = true;
-        players[0].crew = false;
+        //players[0].imposter = true;
+        //players[0].crew = false;
 
-        for(int i = 1; i<players.Count; i++)
-        {
-            players[i].imposter = false;
-            players[i].crew = true;
-        }
+        //for (int i = 1; i < players.Count; i++)
+        //{
+        //    players[i].imposter = false;
+        //    players[i].crew = true;
+        //}
     }
 }
