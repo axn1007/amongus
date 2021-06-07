@@ -408,6 +408,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         {
             if (hit.transform.tag == "energy")
             {
+                if (Player.instance.mission[2] != true) return;
+
                 Material mt = hit.transform.GetComponent<MeshRenderer>().material;
                 mt.color = Color.red;
                 MissionManager.instance.EnergyMission(1);
@@ -420,6 +422,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
 
                 if (currTime > pressTime)
                 {
+                    if (Player.instance.mission[4] != true) return;
+
                     print(objectName + " Mission Complete!");
                     MissionManager.instance.ButtonMission(1);
                     currTime = 0;

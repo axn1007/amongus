@@ -42,10 +42,8 @@ public class MissionManager : MonoBehaviourPun
 
     public void ScanMission(int count)
     {
-        if (photonView.IsMine == false) return;
-
         scanCount += count;
-
+        print(scanCount);
         if (scanCount == 4)
         {
             print("ScanMission Complete");
@@ -55,8 +53,6 @@ public class MissionManager : MonoBehaviourPun
 
     public void LeverMission(int count)
     {
-        if (!photonView.IsMine && Player.instance.mission[1] != true) return;
-
         leverCount += count;
 
         if(leverCount == 1)
@@ -69,8 +65,6 @@ public class MissionManager : MonoBehaviourPun
 
     public void EnergyMission(int count)
     {
-        if (!photonView.IsMine && Player.instance.mission[2] != true) return;
-
         energyCount += count;
 
         if(energyCount == 1)
@@ -82,8 +76,6 @@ public class MissionManager : MonoBehaviourPun
     }
     public void BottleMission(int count)
     {
-        if (!photonView.IsMine && Player.instance.mission[3] != true) return;
-
         bottleCount += count;
 
         if (bottleCount == 1)
@@ -95,8 +87,6 @@ public class MissionManager : MonoBehaviourPun
 
     public void ButtonMission(int count)
     {
-        if (!photonView.IsMine && Player.instance.mission[4] != true) return;
-
         btnCount += count;
 
         if (btnCount == 2)
@@ -108,8 +98,6 @@ public class MissionManager : MonoBehaviourPun
 
     public void FireMission(int count)
     {
-        if (!photonView.IsMine && Player.instance.mission[5] != true) return;
-
         fireCount += count;
 
         if(fireCount == 1)

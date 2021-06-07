@@ -7,7 +7,7 @@ using Photon.Pun;
 public class UIMan : MonoBehaviourPun
 {
     GameObject[] vent;
-    public PlayerMove player;
+    public GameObject player;
     
     void Start()
     {
@@ -27,35 +27,35 @@ public class UIMan : MonoBehaviourPun
 
     public void OnClickMainRoom()
     {
-        photonView.RPC("ventMove", RpcTarget.AllBuffered, 0);
+        photonView.RPC("ventMove", RpcTarget.All, 0);
         //player.transform.position = vent[0].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
 
     public void OnClickFirstZone()
     {
-        photonView.RPC("ventMove", RpcTarget.AllBuffered, 1);
+        photonView.RPC("ventMove", RpcTarget.All, 1);
         //player.transform.position = vent[1].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
 
     public void OnClickSecondZone()
     {
-        photonView.RPC("ventMove", RpcTarget.AllBuffered, 2);
+        photonView.RPC("ventMove", RpcTarget.All, 2);
         //player.transform.position = vent[2].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
 
     public void OnClickThirdZone()
     {
-        photonView.RPC("ventMove", RpcTarget.AllBuffered, 3);
+        photonView.RPC("ventMove", RpcTarget.All, 3);
         //player.transform.position = vent[3].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
 
     public void OnClickForthZone()
     {
-        photonView.RPC("ventMove", RpcTarget.AllBuffered, 4);
+        photonView.RPC("ventMove", RpcTarget.All, 4);
         //player.transform.position = vent[4].transform.position + new Vector3(0, 1, 0);
         Vent.instance.ventUI.SetActive(false);
     }
@@ -98,6 +98,6 @@ public class UIMan : MonoBehaviourPun
     [PunRPC]
     void ventMove(int i)
     {
-        player.transform.position = vent[i].transform.position + new Vector3(0, 1, 0);
+        player.transform.position = vent[i].transform.position + new Vector3(0, 1.39f, 0);
     }
 }

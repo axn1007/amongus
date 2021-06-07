@@ -19,6 +19,7 @@ public class FireExtinguicher : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         if (other.transform.tag != "fire") return;
+        if (Player.instance.mission[5] != true) return;
 
         Destroy(gameObject);
         Destroy(other.gameObject);

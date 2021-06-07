@@ -17,6 +17,8 @@ public class Scan : MonoBehaviour
 
             if(curTime > scanTime)
             {
+                if (Player.instance.mission[0] != true) return;
+
                 print("Misson Complete!");
                 MissionManager.instance.ScanMission(1);
                 curTime = 0;
@@ -29,6 +31,8 @@ public class Scan : MonoBehaviour
 
             if(curTime > scanTime)
             {
+                if (Player.instance.mission[3] != true) return;
+
                 print("Mission Complete!");
                 MissionManager.instance.BottleMission(1);
                 curTime = 0;

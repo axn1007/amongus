@@ -18,6 +18,8 @@ public class MoveLever : MonoBehaviour
         {
             if (Vent.instance.sliderBool && slider.value == 100)
             {
+                if (Player.instance.mission[1] != true) return;
+
                 print("LeverMission Complete!");
                 Vent.instance.sliderBool = false;
                 MissionManager.instance.LeverMission(1);
