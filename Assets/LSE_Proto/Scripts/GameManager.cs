@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviourPun
 
     public Transform[] playerPos;
     public bool[] isEmpty;
-
+    
     //Player 객체들이 저장될 변수
     public List<Player> players = new List<Player>();
 
@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviourPun
             if(isEmpty[i] == false)
             {
                 isEmpty[i] = true;
-
                 return playerPos[i].position;
             }
         }

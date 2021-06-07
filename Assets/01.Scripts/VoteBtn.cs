@@ -28,14 +28,9 @@ public class VoteBtn : MonoBehaviour
         
     }
 
-    public void OnClickVoteBtn()
-    {
-        print( "버튼이 눌렸습니다");
-        count++;
-    }
     public void OnClickVoteBtn1()
     {
-        print("버튼1이 눌렸습니다");
+        print( "버튼1이 눌렸습니다");
         count++;
     }
     public void OnClickVoteBtn2()
@@ -66,6 +61,11 @@ public class VoteBtn : MonoBehaviour
     public void OnClickVoteBtn7()
     {
         print("버튼7이 눌렸습니다");
+        count++;
+    }
+    public void OnClickVoteBtn8()
+    {
+        print("버튼8이 눌렸습니다");
         count++;
     }
 }

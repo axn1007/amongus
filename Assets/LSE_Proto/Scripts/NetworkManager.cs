@@ -13,7 +13,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         int num = Random.Range(0, 100);
         PhotonNetwork.NickName = "Player" + num;
-
         PhotonNetwork.AutomaticallySyncScene = true;
 
         PhotonNetwork.ConnectUsingSettings();

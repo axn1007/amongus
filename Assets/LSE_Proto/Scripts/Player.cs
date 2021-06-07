@@ -10,11 +10,17 @@ public class Player : MonoBehaviourPun
     public bool[] mission;
     public bool imposter;
     public bool crew;
+    public int infoNum;
 
     Vector3 myFirstPos;
 
     public GameObject missionUI;
     public GameObject missionBar;
+
+    public GameObject aiColor;
+    public GameObject otherAiColor;
+
+    public List<Material> colors = new List<Material>();
 
     private void Awake()
     {
@@ -26,11 +32,19 @@ public class Player : MonoBehaviourPun
 
     void Start()
     {
-        if(PhotonNetwork.IsMasterClient)
+        infoNum = photonView.OwnerActorNr;
+
+        if (PhotonNetwork.IsMasterClient)
         {
             Vector3 pos = GameManager.instance.GetEmptyPos();
-            photonView.RPC("RpcSetInit", RpcTarget.AllBuffered, pos);
+            photonView.RPC("RpcSetInit", RpcTarget.AllBuffered, pos, infoNum);
             myFirstPos = pos;
+        }
+
+        if(photonView.IsMine)
+        {
+            GameObject go = GameObject.Find("VoteCanvas");
+            go.GetComponent<OVRRaycaster>().enabled = true;
         }
 
         GameManager.instance.AddPlayer(this);
@@ -80,9 +94,11 @@ public class Player : MonoBehaviourPun
     }
 
     [PunRPC]
-    void RpcSetInit(Vector3 pos)
+    void RpcSetInit(Vector3 pos, int infoNum)
     {
         transform.position = pos + new Vector3(0, 1.39f, 0);
+        aiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
+        otherAiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
     }
 }
 

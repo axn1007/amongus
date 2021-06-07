@@ -267,7 +267,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 830d65e8817c54cfdb8149fab0e2911d, type: 2}
+  - {fileID: 2100000, guid: 03dc76f6279d51f4092e2399c532c921, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6334,8 +6334,20 @@ MonoBehaviour:
   mission: 00000000000000000000
   imposter: 0
   crew: 0
+  infoNum: 0
   missionUI: {fileID: 1813852573683983944}
   missionBar: {fileID: 1813852573078863319}
+  aiColor: {fileID: 7355869807757583330}
+  otherAiColor: {fileID: 1090838302147695697}
+  colors:
+  - {fileID: 2100000, guid: 03dc76f6279d51f4092e2399c532c921, type: 2}
+  - {fileID: 2100000, guid: 890124347a0c74c4c948ac74fedd1f6e, type: 2}
+  - {fileID: 2100000, guid: c99378bfaa18e664d8cf4b42a307ca4e, type: 2}
+  - {fileID: 2100000, guid: 1b950d0d4505a5241b0232e931ea58c9, type: 2}
+  - {fileID: 2100000, guid: d9fc962b465683c4ab28a50dec6acd27, type: 2}
+  - {fileID: 2100000, guid: 00241945574c477408dec96af6b656e2, type: 2}
+  - {fileID: 2100000, guid: 22e276e8a5cab074689bd97d6fa66392, type: 2}
+  - {fileID: 2100000, guid: 28ab50a89181dd94ba623bd6651a5ba6, type: 2}
 --- !u!1 &4518669182484303921
 GameObject:
   m_ObjectHideFlags: 0
@@ -9497,7 +9509,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 830d65e8817c54cfdb8149fab0e2911d, type: 2}
+  - {fileID: 2100000, guid: 03dc76f6279d51f4092e2399c532c921, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
