@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviourPun
 
     void Start()
     {
-        Screen.SetResolution(960, 640, FullScreenMode.Windowed);
+        //Screen.SetResolution(960, 640, FullScreenMode.Windowed);
+
 
         PhotonNetwork.SendRate = 30;
         PhotonNetwork.SerializationRate = 30;

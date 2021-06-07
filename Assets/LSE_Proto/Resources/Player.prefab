@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 124318399}
   - component: {fileID: 124318398}
   - component: {fileID: 124318402}
+  - component: {fileID: 1271445812682575895}
   m_Layer: 5
   m_Name: MissionRand
   m_TagString: Untagged
@@ -120,7 +121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -4.45, y: -0.67}
+  m_AnchoredPosition: {x: -0.8800001, y: -0.67}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &124318400
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &124318398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +203,25 @@ MonoBehaviour:
   - {fileID: 421938842}
   - {fileID: 1727378873}
   - {fileID: 1806606064}
+--- !u!114 &1271445812682575895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124318397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf960227867044282d921171d2d7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  pointer: {fileID: 0}
+  sortOrder: 0
 --- !u!1 &171370194
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +428,7 @@ GameObject:
   - component: {fileID: 729770277}
   - component: {fileID: 729770276}
   - component: {fileID: 729770275}
+  - component: {fileID: 332962636133050815}
   m_Layer: 5
   m_Name: MyMissionBar
   m_TagString: Untagged
@@ -433,7 +454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -3.68, y: -0.73}
+  m_AnchoredPosition: {x: -0.11, y: -0.73}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &729770277
@@ -497,6 +518,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &332962636133050815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729770274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf960227867044282d921171d2d7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  pointer: {fileID: 0}
+  sortOrder: 0
 --- !u!1 &800181901
 GameObject:
   m_ObjectHideFlags: 0
@@ -4783,6 +4823,7 @@ MonoBehaviour:
   - {fileID: 4898064468344827785}
   myAni: {fileID: 859748519977397633}
   otherAni: {fileID: 1561804809766865409}
+  Players: 
   anim: {fileID: 859748519977397633}
   moveSpeed: 10
   rotSpeed: 3
@@ -4889,6 +4930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bdb72294bd83347b0c14ee22b2c130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mission: 00000000000000000000
 --- !u!1 &2853471130867944695
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
-
+        
         PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions() { MaxPlayers = 8 }, null);
     }
 

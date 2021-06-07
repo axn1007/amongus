@@ -55,6 +55,8 @@ public class MissionRand : MonoBehaviourPun
     {
         //texts = (missionOrder + "번째 미션은?");
         print(missionOrder + "번째 미션은?");
+        Player.instance.mission[missionIdx] = true;
+        
         switch(missionIdx)
         {
             case 0:
