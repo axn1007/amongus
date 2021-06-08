@@ -386,6 +386,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         {
             if (hit.transform.tag == "Weed")
             {
+                if (Player.instance.mission[9] != true) return;
+
                 catchedObj = hit.transform;
                 hit.transform.SetParent(rHand.transform);
                 Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
@@ -434,6 +436,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
 
             if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Btn")))
             {
+                if (Player.instance.mission[8] != true) return;
+
                 currTime += Time.deltaTime;
                 doc.transform.position = GetPoint(startPos.transform.position, middlePos.transform.position, pos.transform.position, currTime / 3);
             }

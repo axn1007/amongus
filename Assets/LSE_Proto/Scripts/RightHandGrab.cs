@@ -7,7 +7,6 @@ public class RightHandGrab : MonoBehaviour
 {
     public float throwPower = 3;
     
-
     //Transform catchedObj;
 
     public PhotonView photonView;

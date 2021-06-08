@@ -5738,8 +5738,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4518669183428525501}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickForthZone
+        m_TargetAssemblyTypeName: UIMan, Assembly-CSharp
+        m_MethodName: OnClickVentFive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6543,8 +6543,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4518669183428525501}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickSecondZone
+        m_TargetAssemblyTypeName: UIMan, Assembly-CSharp
+        m_MethodName: OnClickVentThree
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6770,8 +6770,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4518669183428525501}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickThirdZone
+        m_TargetAssemblyTypeName: UIMan, Assembly-CSharp
+        m_MethodName: OnClickVentFour
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7782,8 +7782,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4518669183428525501}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickMainRoom
+        m_TargetAssemblyTypeName: UIMan, Assembly-CSharp
+        m_MethodName: OnClickVentOne
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8009,6 +8009,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25388032a574883409f399c8a6d4930d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vent:
+  - {fileID: 3435314203562513294, guid: 5d11724a5d23cb94a85eb2dd730e2768, type: 3}
+  - {fileID: 576529602439529312, guid: e8794f8978af24c43946359b1ed4e860, type: 3}
+  - {fileID: 6903365091209862145, guid: 73890e3260897ec43b9ea5ebf30e3f58, type: 3}
+  - {fileID: 2965537266137799878, guid: aee3547fa20530b479f38d5323c01b37, type: 3}
+  - {fileID: 2996947864769179998, guid: 82efff183766faf468de7fbd93cd95cf, type: 3}
   player: {fileID: 4518669182453599104}
 --- !u!114 &4518669183428525500
 MonoBehaviour:
@@ -8152,8 +8158,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4518669183428525501}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OnClickFirstZone
+        m_TargetAssemblyTypeName: UIMan, Assembly-CSharp
+        m_MethodName: OnClickVentTwo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

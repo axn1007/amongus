@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviourPun
 
         if(players.Count == 4)
         {
+            StartCoroutine(CountDown());
+
             print("랜덤!");
             for (int i = 0; i < 100; i++)
             {
@@ -94,6 +96,36 @@ public class GameManager : MonoBehaviourPun
         }
     }
     
+    IEnumerator CountDown()
+    {
+        print("플레이어가 모두 입장하였습니다.");
+        yield return new WaitForSeconds(5.0f);
+        print("5초 뒤에 게임이 시작됩니다.");
+        yield return new WaitForSeconds(5.0f);
+        print("5");
+        yield return new WaitForSeconds(1.0f);
+        print("4");
+        yield return new WaitForSeconds(1.0f);
+        print("3");
+        yield return new WaitForSeconds(1.0f);
+        print("2");
+        yield return new WaitForSeconds(1.0f);
+        print("1");
+        yield return new WaitForSeconds(1.0f);
+        print("임포스터 선정 중....");
+        yield return new WaitForSeconds(5.0f);
+        print("당신은");
+        yield return new WaitForSeconds(3.0f);
+        if (Player.instance.imposter == true)
+        {
+            print("임포스터입니다. 크루원을 모두 죽이세요.");
+        }
+        else
+        {
+            print("크루원 입니다. 미션을 모두 수행하세요.");
+        }
+    }
+
     public void OnClickImporster()
     {
         print("클릭!");

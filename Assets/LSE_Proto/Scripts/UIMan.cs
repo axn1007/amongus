@@ -6,18 +6,11 @@ using Photon.Pun;
 
 public class UIMan : MonoBehaviourPun
 {
-    GameObject[] vent;
+    public GameObject[] vent;
     public GameObject player;
     
     void Start()
     {
-        vent = new GameObject[] { 
-            GameObject.Find("Map/Vent/Vent1"),
-            GameObject.Find("Map/Vent/Vent2"),
-            GameObject.Find("Map/Vent/Vent3"),
-            GameObject.Find("Map/Vent/Vent4"),
-            GameObject.Find("Map/Vent/Vent5"),
-        };   
     }
 
     void Update()
@@ -25,39 +18,34 @@ public class UIMan : MonoBehaviourPun
         
     }
 
-    public void OnClickMainRoom()
+    public void OnClickVentOne()
     {
-        photonView.RPC("ventMove", RpcTarget.All, 0);
-        //player.transform.position = vent[0].transform.position + new Vector3(0, 1, 0);
-        Vent.instance.ventUI.SetActive(false);
+        print("MainVent");
+        photonView.RPC("MoveVentPos", RpcTarget.All, vent[0]);
     }
 
-    public void OnClickFirstZone()
+    public void OnClickVentTwo()
     {
-        photonView.RPC("ventMove", RpcTarget.All, 1);
-        //player.transform.position = vent[1].transform.position + new Vector3(0, 1, 0);
-        Vent.instance.ventUI.SetActive(false);
+        print("MainVent");
+        photonView.RPC("MoveVentPos", RpcTarget.All, vent[1]);
     }
 
-    public void OnClickSecondZone()
+    public void OnClickVentThree()
     {
-        photonView.RPC("ventMove", RpcTarget.All, 2);
-        //player.transform.position = vent[2].transform.position + new Vector3(0, 1, 0);
-        Vent.instance.ventUI.SetActive(false);
+        print("MainVent");
+        photonView.RPC("MoveVentPos", RpcTarget.All, vent[2]);
     }
 
-    public void OnClickThirdZone()
+    public void OnClickVentFour()
     {
-        photonView.RPC("ventMove", RpcTarget.All, 3);
-        //player.transform.position = vent[3].transform.position + new Vector3(0, 1, 0);
-        Vent.instance.ventUI.SetActive(false);
+        print("MainVent");
+        photonView.RPC("MoveVentPos", RpcTarget.All, vent[3]);
     }
 
-    public void OnClickForthZone()
+    public void OnClickVentFive()
     {
-        photonView.RPC("ventMove", RpcTarget.All, 4);
-        //player.transform.position = vent[4].transform.position + new Vector3(0, 1, 0);
-        Vent.instance.ventUI.SetActive(false);
+        print("MainVent");
+        photonView.RPC("MoveVentPos", RpcTarget.All, vent[4]);
     }
 
     public void OnClickMainEnergy()

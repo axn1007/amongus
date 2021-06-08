@@ -11,6 +11,7 @@ public class Player : MonoBehaviourPun
     public bool imposter;
     public bool crew;
     public int infoNum;
+    int i;
 
     Vector3 myFirstPos;
 
@@ -41,13 +42,14 @@ public class Player : MonoBehaviourPun
             myFirstPos = pos;
         }
 
-        if(photonView.IsMine)
+        GameManager.instance.AddPlayer(this);
+        /*
+        if (photonView.IsMine)
         {
             GameObject go = GameObject.Find("VoteCanvas");
             go.GetComponent<OVRRaycaster>().enabled = true;
         }
-
-        GameManager.instance.AddPlayer(this);
+        */
     }
 
     void Update()
@@ -79,6 +81,7 @@ public class Player : MonoBehaviourPun
         }
     }
 
+
     private void OnTriggerStay(Collider other)
     {
         if (other.transform.tag == "emergency")
@@ -99,6 +102,12 @@ public class Player : MonoBehaviourPun
         transform.position = pos + new Vector3(0, 1.39f, 0);
         aiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
         otherAiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
+    }
+
+    [PunRPC]
+    void MoveVentPos(GameObject vent)
+    {
+        transform.position = vent.transform.position + new Vector3(0, 1.39f, 0);
     }
 }
 

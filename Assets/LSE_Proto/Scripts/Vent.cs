@@ -41,6 +41,8 @@ public class Vent : MonoBehaviour
         {
             print("this is lever!");
 
+            if (Player.instance.mission[1] != true) return;
+
             if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
                 MissionManager.instance.missionUI[0].SetActive(true);
@@ -52,6 +54,7 @@ public class Vent : MonoBehaviour
         {
             print("this is energy");
 
+            if (Player.instance.mission[2] != true) return;
             if (MissionManager.instance.energyCount == 1) return;
 
             if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
@@ -64,7 +67,9 @@ public class Vent : MonoBehaviour
         {
             print("this is puzzle");
 
-            if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            if (Player.instance.mission[7] != true) return;
+
+            if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
                 MissionManager.instance.missionUI[2].SetActive(true);
             }
