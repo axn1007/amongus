@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviourPun
 {
@@ -99,31 +100,44 @@ public class GameManager : MonoBehaviourPun
     IEnumerator CountDown()
     {
         print("플레이어가 모두 입장하였습니다.");
+        Player.instance.countDown.text = "플레이어가 모두 입장하였습니다.";
         yield return new WaitForSeconds(5.0f);
         print("5초 뒤에 게임이 시작됩니다.");
+        Player.instance.countDown.text = "5초 뒤에 게임이 시작됩니다";
         yield return new WaitForSeconds(5.0f);
         print("5");
+        Player.instance.countDown.text = "5";
         yield return new WaitForSeconds(1.0f);
         print("4");
+        Player.instance.countDown.text = "4";
         yield return new WaitForSeconds(1.0f);
         print("3");
+        Player.instance.countDown.text = "3";
         yield return new WaitForSeconds(1.0f);
         print("2");
+        Player.instance.countDown.text = "2";
         yield return new WaitForSeconds(1.0f);
         print("1");
+        Player.instance.countDown.text = "1";
         yield return new WaitForSeconds(1.0f);
         print("임포스터 선정 중....");
-        yield return new WaitForSeconds(5.0f);
-        print("당신은");
+        Player.instance.countDown.text = " ";
+        Player.instance.intro[4].SetActive(true);
         yield return new WaitForSeconds(3.0f);
         if (Player.instance.imposter == true)
         {
+            Player.instance.intro[1].SetActive(false);
             print("임포스터입니다. 크루원을 모두 죽이세요.");
+            Player.instance.intro[3].SetActive(true);
         }
-        else
+        if (Player.instance.crew == true)
         {
+            Player.instance.intro[1].SetActive(false);
             print("크루원 입니다. 미션을 모두 수행하세요.");
+            Player.instance.intro[2].SetActive(true);
         }
+        yield return new WaitForSeconds(5.0f);
+        Player.instance.intro[0].SetActive(false);
     }
 
     public void OnClickImporster()

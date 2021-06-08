@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviourPun
 {
@@ -12,6 +13,9 @@ public class Player : MonoBehaviourPun
     public bool crew;
     public int infoNum;
     int i;
+
+    public Text countDown;
+    public GameObject[] intro;
 
     Vector3 myFirstPos;
 
@@ -100,8 +104,8 @@ public class Player : MonoBehaviourPun
     void RpcSetInit(Vector3 pos, int infoNum)
     {
         transform.position = pos + new Vector3(0, 1.39f, 0);
-        aiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
-        otherAiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
+        aiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum - 1];
+        otherAiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum - 1];
     }
 
     [PunRPC]

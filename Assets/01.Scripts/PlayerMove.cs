@@ -57,6 +57,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         playerCam.SetActive(photonView.IsMine);
         otherModel.SetActive(!photonView.IsMine);
 
+
         //게임 시작 전에는 Idle 상태
         state = PlayerState.Idle;
     }
