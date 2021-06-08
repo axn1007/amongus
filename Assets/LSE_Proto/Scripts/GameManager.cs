@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviourPun
 
     public Transform[] playerPos;
     public bool[] isEmpty;
-
+    public GameObject wall;
     //public Player myPlayer;
 
     //Player 객체들이 저장될 변수
@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviourPun
         print("임포스터 선정 중....");
         Player.instance.intro[0].SetActive(false);
         Player.instance.intro[1].SetActive(true);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(10.0f);
+        Destroy(wall);
     }
 }
