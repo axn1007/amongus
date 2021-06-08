@@ -10,13 +10,15 @@ public class GameManager : MonoBehaviourPun
 
     public Transform[] playerPos;
     public bool[] isEmpty;
-    
+
+    //public Player myPlayer;
+
     //Player 객체들이 저장될 변수
     public List<Player> players = new List<Player>();
 
     public void AddPlayer(Player player)
     {
-        if(!players.Contains(player))
+        if (!players.Contains(player))
         {
             players.Add(player);
         }
@@ -24,7 +26,7 @@ public class GameManager : MonoBehaviourPun
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -45,14 +47,14 @@ public class GameManager : MonoBehaviourPun
 
     void Update()
     {
-        
+
     }
 
     public Vector3 GetEmptyPos()
     {
-        for(int i = 0; i<isEmpty.Length; i++)
+        for (int i = 0; i < isEmpty.Length; i++)
         {
-            if(isEmpty[i] == false)
+            if (isEmpty[i] == false)
             {
                 isEmpty[i] = true;
                 return playerPos[i].position;
@@ -61,43 +63,55 @@ public class GameManager : MonoBehaviourPun
 
         return Vector3.zero;
     }
-    
+
     //담아둔 Players배열을 랜덤으로 돌려서 첫번째를 임포스터로 선정
     IEnumerator ImposterRand()
     {
-        while(players.Count != 4)
+        while (players.Count != 4)
         {
             yield return null;
         }
 
-        if(players.Count == 4)
+        if (PhotonNetwork.IsMasterClient)
         {
-            StartCoroutine(CountDown());
-
-            print("랜덤!");
-            for (int i = 0; i < 100; i++)
+            if (players.Count == 4)
             {
-                Player tamp;
-                int rand1 = Random.Range(0, players.Count);
-                int rand2 = Random.Range(0, players.Count);
+                print("랜덤!");
+                for (int i = 0; i < 100; i++)
+                {
+                    Player tamp;
+                    int rand1 = Random.Range(0, players.Count);
+                    int rand2 = Random.Range(0, players.Count);
 
-                tamp = players[rand1];
-                players[rand1] = players[rand2];
-                players[rand2] = tamp;
-            }
+                    tamp = players[rand1];
+                    players[rand1] = players[rand2];
+                    players[rand2] = tamp;
+                }
 
-            players[0].imposter = true;
-            players[0].crew = false;
+                players[0].imposter = true;
+                players[0].crew = false;
 
-            for (int i = 1; i < players.Count; i++)
-            {
-                players[i].imposter = false;
-                players[i].crew = true;
+                for (int i = 1; i < players.Count; i++)
+                {
+                    players[i].imposter = false;
+                    players[i].crew = true;
+                }
+
+                for(int i = 0; i < players.Count; i++)
+                {
+                    players[i].photonView.RPC("SetImposter", RpcTarget.All, players[i].imposter);
+                }
             }
         }
     }
-    
-    IEnumerator CountDown()
+
+
+    public void CountDown()
+    {
+        StartCoroutine(CoCountDown());
+    }
+
+    IEnumerator CoCountDown()
     {
         print("플레이어가 모두 입장하였습니다.");
         Player.instance.countDown.text = "플레이어가 모두 입장하였습니다.";
@@ -121,40 +135,8 @@ public class GameManager : MonoBehaviourPun
         Player.instance.countDown.text = "1";
         yield return new WaitForSeconds(1.0f);
         print("임포스터 선정 중....");
-        Player.instance.countDown.text = " ";
-        Player.instance.intro[4].SetActive(true);
-        yield return new WaitForSeconds(3.0f);
-        if (Player.instance.imposter == true)
-        {
-            Player.instance.intro[1].SetActive(false);
-            print("임포스터입니다. 크루원을 모두 죽이세요.");
-            Player.instance.intro[3].SetActive(true);
-        }
-        if (Player.instance.crew == true)
-        {
-            Player.instance.intro[1].SetActive(false);
-            print("크루원 입니다. 미션을 모두 수행하세요.");
-            Player.instance.intro[2].SetActive(true);
-        }
-        yield return new WaitForSeconds(5.0f);
         Player.instance.intro[0].SetActive(false);
-    }
-
-    public void OnClickImporster()
-    {
-        print("클릭!");
-
-        ////게임시작버튼을 누르면 랜덤
-        //ImposterRand();
-        //print("랜덤 클릭!");
-
-        //players[0].imposter = true;
-        //players[0].crew = false;
-
-        //for (int i = 1; i < players.Count; i++)
-        //{
-        //    players[i].imposter = false;
-        //    players[i].crew = true;
-        //}
+        Player.instance.intro[1].SetActive(true);
+        yield return new WaitForSeconds(3.0f);
     }
 }

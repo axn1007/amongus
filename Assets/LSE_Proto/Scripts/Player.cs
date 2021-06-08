@@ -37,6 +37,10 @@ public class Player : MonoBehaviourPun
 
     void Start()
     {
+        //if(photonView.IsMine)
+        //{
+        //    GameManager.instance.myPlayer = this;
+        //}
         infoNum = photonView.OwnerActorNr;
 
         if (PhotonNetwork.IsMasterClient)
@@ -47,6 +51,8 @@ public class Player : MonoBehaviourPun
         }
 
         GameManager.instance.AddPlayer(this);
+
+        StartCoroutine(ImOrCrew());
         /*
         if (photonView.IsMine)
         {
@@ -63,12 +69,12 @@ public class Player : MonoBehaviourPun
 
     void UIClick()
     {
-        if(Input.GetKeyDown(KeyCode.Space) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
+        if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
             missionUI.SetActive(true);
             missionBar.SetActive(true);
         }
-        if (Input.GetKeyUp(KeyCode.Space) || OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.LTouch))
+        if (Input.GetKeyUp(KeyCode.Alpha1) || OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
             missionUI.SetActive(false);
             missionBar.SetActive(false);
@@ -104,8 +110,8 @@ public class Player : MonoBehaviourPun
     void RpcSetInit(Vector3 pos, int infoNum)
     {
         transform.position = pos + new Vector3(0, 1.39f, 0);
-        aiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum - 1];
-        otherAiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum - 1];
+        aiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
+        otherAiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
     }
 
     [PunRPC]
@@ -113,5 +119,50 @@ public class Player : MonoBehaviourPun
     {
         transform.position = vent.transform.position + new Vector3(0, 1.39f, 0);
     }
+
+    [PunRPC]
+    void SetImposter(bool isImposter)
+    {
+        imposter = isImposter;
+        crew = !isImposter;
+        if(photonView.IsMine)
+        {
+            GameManager.instance.CountDown();
+        }
+    }
+
+    IEnumerator ImOrCrew()
+    {
+        while (GameManager.instance.players.Count != 4)
+        {
+            yield return null;
+        }
+
+        if (GameManager.instance.players.Count == 4)
+        {
+            yield return new WaitForSeconds(20.0f);
+            intro[1].SetActive(false);
+
+            if (crew == false && imposter == true)
+            {
+                print(gameObject.GetComponent<PhotonView>().ViewID + "임포스터입니다. 크루원을 모두 죽이세요.");
+                intro[3].SetActive(true);
+                print("임포스터 UI");
+            }
+
+            else
+            {
+                print(gameObject.GetComponent<PhotonView>().ViewID + "크루원 입니다. 미션을 모두 수행하세요.");
+                intro[2].SetActive(true);
+                print("크루원 UI");
+            }
+
+            yield return new WaitForSeconds(5.0f);
+            intro[2].SetActive(false);
+            intro[3].SetActive(false);
+        }
+    }
 }
+
+
 
