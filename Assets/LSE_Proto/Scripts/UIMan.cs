@@ -11,6 +11,14 @@ public class UIMan : MonoBehaviourPun
     
     void Start()
     {
+        vent = new GameObject[]
+        {
+            GameObject.Find("MAP/Vent/Vent1"),
+            GameObject.Find("MAP/Vent/Vent2"),
+            GameObject.Find("MAP/Vent/Vent3"),
+            GameObject.Find("MAP/Vent/Vent4"),
+            GameObject.Find("MAP/Vent/Vent5"),
+        };
     }
 
     void Update()
@@ -81,11 +89,5 @@ public class UIMan : MonoBehaviourPun
         print("Go to ForthRoom");
         EnergyMission.instance.energyBool[4] = true;
         MissionManager.instance.missionUI[1].SetActive(false);
-    }
-
-    [PunRPC]
-    void ventMove(int i)
-    {
-        player.transform.position = vent[i].transform.position + new Vector3(0, 1.39f, 0);
     }
 }

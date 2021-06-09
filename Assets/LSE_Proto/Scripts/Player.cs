@@ -81,6 +81,14 @@ public class Player : MonoBehaviourPun
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.tag == "emergency")
+        {
+            CallCrew();
+        }
+    }
+
     void CallCrew()
     {
         float v = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LHand);
@@ -88,15 +96,6 @@ public class Player : MonoBehaviourPun
         if (Input.GetKeyDown(KeyCode.Alpha5) || v > 0)
         {
             photonView.RPC("CallCrewPos", RpcTarget.All);
-        }
-    }
-
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.transform.tag == "emergency")
-        {
-            CallCrew();
         }
     }
 
