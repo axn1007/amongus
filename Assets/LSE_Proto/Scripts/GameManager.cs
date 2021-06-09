@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviourPun
 {
     public static GameManager instance;
@@ -11,10 +12,15 @@ public class GameManager : MonoBehaviourPun
     public Transform[] playerPos;
     public bool[] isEmpty;
     public GameObject wall;
-    //public Player myPlayer;
+    public Player myPlayer;
 
     //Player 객체들이 저장될 변수
     public List<Player> players = new List<Player>();
+
+    public int[,] arrayCount = new int[8, 2];
+
+    public int sum;
+    public GameObject voteUi;
 
     public void AddPlayer(Player player)
     {
@@ -43,6 +49,8 @@ public class GameManager : MonoBehaviourPun
         isEmpty = new bool[playerPos.Length];
 
         StartCoroutine(ImposterRand());
+        //투표
+        StartCoroutine(SortVoting());
     }
 
     void Update()
@@ -105,7 +113,6 @@ public class GameManager : MonoBehaviourPun
         }
     }
 
-
     public void CountDown()
     {
         StartCoroutine(CoCountDown());
@@ -139,5 +146,163 @@ public class GameManager : MonoBehaviourPun
         Player.instance.intro[1].SetActive(true);
         yield return new WaitForSeconds(10.0f);
         Destroy(wall);
+    }
+
+    //투표시스템
+    public void OnClickVoteBtn1()
+    {
+        if (Player.instance.vote != true) return;
+        
+        print("버튼1이 눌렸습니다");
+
+        myPlayer.photonView.RPC("AddCount", RpcTarget.All, 0);
+
+        print("버튼1은" + arrayCount[0, 1]);
+        
+        Player.instance.vote = false;
+    }
+    public void OnClickVoteBtn2()
+    {
+        if (Player.instance.vote != true) return;
+
+        print("버튼2이 눌렸습니다");
+
+        myPlayer.photonView.RPC("AddCount", RpcTarget.All, 1);
+
+        print("버튼1은" + arrayCount[1, 1]);
+
+        Player.instance.vote = false;
+    }
+    public void OnClickVoteBtn3()
+    {
+        if (Player.instance.vote != true) return;
+
+        print("버튼3이 눌렸습니다");
+
+        myPlayer.photonView.RPC("AddCount", RpcTarget.All, 2);
+
+        print("버튼1은" + arrayCount[2, 1]);
+
+        Player.instance.vote = false;
+    }
+    public void OnClickVoteBtn4()
+    {
+        if (Player.instance.vote != true) return;
+
+        print("버튼4이 눌렸습니다");
+
+        myPlayer.photonView.RPC("AddCount", RpcTarget.All, 3);
+
+        print("버튼1은" + arrayCount[3, 1]);
+
+        Player.instance.vote = false;
+    }
+    public void OnClickVoteBtn5()
+    {
+        if (Player.instance.vote != true) return;
+
+        print("버튼5이 눌렸습니다");
+
+        myPlayer.photonView.RPC("AddCount", RpcTarget.All, 4);
+
+        print("버튼1은" + arrayCount[4, 1]);
+
+        Player.instance.vote = false;
+    }
+    public void OnClickVoteBtn6()
+    {
+        if (Player.instance.vote != true) return;
+
+        print("버튼6이 눌렸습니다");
+
+        myPlayer.photonView.RPC("AddCount", RpcTarget.All, 5);
+
+        print("버튼1은" + arrayCount[5, 1]);
+
+        Player.instance.vote = false;
+    }
+    public void OnClickVoteBtn7()
+    {
+        if (Player.instance.vote != true) return;
+
+        print("버튼7이 눌렸습니다");
+
+        myPlayer.photonView.RPC("AddCount", RpcTarget.All, 6);
+
+        print("버튼1은" + arrayCount[6, 1]);
+
+        Player.instance.vote = false;
+    }
+    public void OnClickVoteBtn8()
+    {
+        if (Player.instance.vote != true) return;
+
+        print("버튼8이 눌렸습니다");
+
+        myPlayer.photonView.RPC("AddCount", RpcTarget.All, 7);
+
+        print("버튼1은" + arrayCount[7, 1]);
+
+        Player.instance.vote = false;
+    }
+
+    IEnumerator SortVoting()
+    {
+        while (sum != 4)
+        {
+            yield return null;
+        }
+
+        if (sum == 4)
+        {
+            print("투표");
+
+            List<int> bestIdx = new List<int>();
+            int score = -1;
+            for (int i = 0; i < 8; i++)
+            {
+                if (arrayCount[i, 1] > score)
+                {
+                    score = arrayCount[i, 1];
+                    bestIdx.Clear();
+                    bestIdx.Add(i);
+                }
+                else if (arrayCount[i, 1] == score)
+                {
+                    bestIdx.Add(i);
+                }
+            }
+            print(bestIdx[0]);
+
+            if (bestIdx.Count > 1)
+            {
+                print("부결!");
+            }
+
+            else
+            {
+                for (int i = 0; i < players.Count; i++)
+                {
+                    print("비교 시작");
+
+                    if (players[i].infoNum == (bestIdx[0] + 1))
+                    {
+                        players[i].transform.GetChild(0).gameObject.SetActive(false);
+                        print(players[i].infoNum);
+                        print("비교 끝!");
+                        players[i].transform.GetChild(2).gameObject.SetActive(false);
+
+                        //버튼 비활성화
+                        voteUi.transform.GetChild(bestIdx[0]).gameObject.SetActive(false);
+                    }
+                }
+            }   
+        }
+    }
+
+    public void AddCount(int i)
+    {
+        arrayCount[i, 1] += 1;
+        sum += 1;
     }
 }

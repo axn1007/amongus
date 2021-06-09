@@ -18,10 +18,15 @@ public class UIMan : MonoBehaviourPun
         
     }
 
+    public void OnClickVent(int idx)
+    {
+        photonView.RPC("MoveVentPos", RpcTarget.All, vent[idx].transform.position + new Vector3(0, 1.39f, 0));
+    }
+
     public void OnClickVentOne()
     {
         print("MainVent");
-        photonView.RPC("MoveVentPos", RpcTarget.All, vent[0]);
+        photonView.RPC("MoveVentPos", RpcTarget.All, vent[0].transform.position + new Vector3(0, 1.39f, 0));
     }
 
     public void OnClickVentTwo()
