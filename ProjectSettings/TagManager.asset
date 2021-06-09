@@ -15,6 +15,7 @@ TagManager:
   - door
   - trash
   - emergency
+  - knife
   layers:
   - Default
   - TransparentFX

@@ -11,12 +11,18 @@ public class Player : MonoBehaviourPun
     public bool[] mission;
     public bool imposter;
     public bool crew;
+    public bool vote;
     public int infoNum;
     int i;
+
+    float currTime;
+    float dieTime = 1;
 
     public Text countDown;
     public GameObject[] intro;
 
+    public GameObject knife;
+    public GameObject otherKnife;
     Vector3 myFirstPos;
 
     public GameObject missionUI;
@@ -37,11 +43,12 @@ public class Player : MonoBehaviourPun
 
     void Start()
     {
-        //if(photonView.IsMine)
-        //{
-        //    GameManager.instance.myPlayer = this;
-        //}
+        if (photonView.IsMine)
+        {
+            GameManager.instance.myPlayer = this;
+        }
         infoNum = photonView.OwnerActorNr;
+        GameManager.instance.arrayCount[photonView.OwnerActorNr - 1, 0] = photonView.OwnerActorNr;
 
         if (PhotonNetwork.IsMasterClient)
         {
@@ -71,13 +78,50 @@ public class Player : MonoBehaviourPun
     {
         if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
-            missionUI.SetActive(true);
-            missionBar.SetActive(true);
-        }
+            if (crew)
+            {
+                missionUI.SetActive(true);
+                missionBar.SetActive(true);
+
+                for (int i = 0; i < GameManager.instance.players.Count; i++)
+                {
+                    if (GameManager.instance.players[i].imposter == true)
+                    {
+                        GameManager.instance.players[i].otherKnife.SetActive(true);
+                    }
+                }
+            }
+
+             if (imposter)
+             {
+                    knife.SetActive(true);
+             }
+        } 
+        
+
         if (Input.GetKeyUp(KeyCode.Alpha1) || OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
-            missionUI.SetActive(false);
-            missionBar.SetActive(false);
+            if (photonView.IsMine)
+            {
+                if (crew)
+                {
+                    missionUI.SetActive(false);
+                    missionBar.SetActive(false);
+
+                    for (int i = 0; i < GameManager.instance.players.Count; i++)
+                    {
+                        if (GameManager.instance.players[i].imposter == true)
+                        {
+                            GameManager.instance.players[i].otherKnife.SetActive(false);
+                        }
+                    }
+                }
+
+                if (imposter)
+                {
+                    knife.SetActive(false);
+                }
+            }
         }
     }
 
@@ -114,9 +158,9 @@ public class Player : MonoBehaviourPun
     }
 
     [PunRPC]
-    void MoveVentPos(GameObject vent)
+    void MoveVentPos(Vector3 p)
     {
-        transform.position = vent.transform.position + new Vector3(0, 1.39f, 0);
+        transform.position = p;
     }
 
     [PunRPC]
@@ -159,7 +203,33 @@ public class Player : MonoBehaviourPun
             yield return new WaitForSeconds(5.0f);
             intro[2].SetActive(false);
             intro[3].SetActive(false);
+            
         }
+    }
+
+    [PunRPC]
+    void AddCount(int i)
+    {
+        GameManager.instance.AddCount(i);
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "knife")
+        {
+            print(imposter);
+            if (imposter == true) return;
+
+            currTime += Time.deltaTime;
+            if (currTime > dieTime)
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
+                transform.GetChild(2).gameObject.SetActive(false);
+                
+                currTime = 0;
+            }
+        }
+        
     }
 }
 

@@ -85,15 +85,6 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             case PlayerState.Walk:
                 Walk();
                 break;
-            case PlayerState.Attack:
-                Attack();
-                break;
-            case PlayerState.Die:
-                Die();
-                break;
-            case PlayerState.Ghost:
-                Ghost();
-                break;
             default:
                 break;
         }
@@ -133,10 +124,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     enum PlayerState
     {
         Idle,
-        Walk,
-        Attack,
-        Die,
-        Ghost
+        Walk
     }
 
     PlayerState state;
@@ -177,6 +165,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             photonView.RPC("AniTrigger", RpcTarget.All, "Walk");
         }
 
+        /*
         //만약 공격버튼(스페이스)을 누르면
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -190,12 +179,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
                 isAttack = true;
             }
         }
-
-        //만약 칼에 닿으면
-        {
-            //Die 상태로 전이
-            //Die 애니로 변경
-        }
+        */
     }
 
     void Walk()
@@ -209,6 +193,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             photonView.RPC("AniTrigger", RpcTarget.All, "Idle");
         }
 
+        /*
         //만약 공격버튼(스페이스)을 누르면
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -222,8 +207,10 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
                 isAttack = true;
             }
         }
+        */
     }
 
+    /*
     void Attack()
     {
         Invoke("AttackKnife", 0.5f);
@@ -269,6 +256,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     {
         MoveCtrl();
     }
+    */
+
 
     [PunRPC]
     void AniTrigger(string state)
@@ -313,15 +302,6 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
 
             transform.localRotation *= Quaternion.Euler(0, rotY, 0);
             Camera.main.transform.localRotation *= Quaternion.Euler(-rotX, 0, 0);
-        }
-    }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Knife")
-        {
-            Destroy(gameObject, 1);
-            state = PlayerState.Die;
         }
     }
 
