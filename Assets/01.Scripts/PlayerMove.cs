@@ -141,12 +141,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
 
     //Knife 공장
     public GameObject knifeFactory;
-    //발사위치
-    public Transform firePos;
-    //던지는 힘
-    public float throwPower = 100;
     public float pressTime = 5.0f;
-    bool isAttack;
 
     float currTime;
     float attackTime = 1.5f;
@@ -225,24 +220,6 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         }
     }
 
-    void AttackKnife()
-    {
-        if (isAttack == true)
-        {
-            //칼 공장에서 칼 생성해서 발사
-            GameObject knife = Instantiate(knifeFactory);
-            ////만들어진 칼을 발사위치에 위치시키고
-            knife.transform.position = firePos.position;
-            knife.transform.forward = new Vector3(firePos.forward.x, 0, firePos.forward.z);
-            //(중력적으로 떨어지게 하려고)rigidbody 가져오자
-            Rigidbody rb = knife.GetComponent<Rigidbody>();
-            //카메라가 바라보는 방향으로 물리적인 힘을 가한다
-            rb.AddForce(Camera.main.transform.forward * throwPower);
-        }
-
-        isAttack = false;
-    }
-
     void Die()
     {
         //Ghost 상태로 전이
@@ -302,6 +279,37 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
 
             transform.localRotation *= Quaternion.Euler(0, rotY, 0);
             Camera.main.transform.localRotation *= Quaternion.Euler(-rotX, 0, 0);
+        }
+    }
+
+    [PunRPC]
+    void AttackKnife()
+    {
+        GameObject knife = Instantiate(knifeFactory);
+
+        if (photonView.IsMine)
+        {
+            knife.transform.SetParent(myBody[1]);
+        }
+        else
+        {
+            knife.transform.SetParent(otherBody[1]);
+        }
+
+        knife.transform.localPosition = Vector3.zero;
+        knife.transform.rotation = myBody[1].rotation * Quaternion.Euler(-35,0,35);
+    }
+
+    [PunRPC]
+    void DestroyKnife()
+    {
+        if (photonView.IsMine)
+        {
+            Destroy(myBody[1].GetChild(4).gameObject);
+        }
+        else
+        {
+            Destroy(otherBody[1].GetChild(0).gameObject);
         }
     }
 

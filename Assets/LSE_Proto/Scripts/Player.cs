@@ -82,20 +82,12 @@ public class Player : MonoBehaviourPun
             {
                 missionUI.SetActive(true);
                 missionBar.SetActive(true);
-
-                for (int i = 0; i < GameManager.instance.players.Count; i++)
-                {
-                    if (GameManager.instance.players[i].imposter == true)
-                    {
-                        GameManager.instance.players[i].otherKnife.SetActive(true);
-                    }
-                }
             }
 
-             if (imposter)
-             {
-                    knife.SetActive(true);
-             }
+            if (imposter)
+            {
+                photonView.RPC("AttackKnife", RpcTarget.All);
+            }
         } 
         
 
@@ -107,19 +99,11 @@ public class Player : MonoBehaviourPun
                 {
                     missionUI.SetActive(false);
                     missionBar.SetActive(false);
-
-                    for (int i = 0; i < GameManager.instance.players.Count; i++)
-                    {
-                        if (GameManager.instance.players[i].imposter == true)
-                        {
-                            GameManager.instance.players[i].otherKnife.SetActive(false);
-                        }
-                    }
                 }
 
                 if (imposter)
                 {
-                    knife.SetActive(false);
+                    photonView.RPC("DestroyKnife", RpcTarget.All);
                 }
             }
         }
