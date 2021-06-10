@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FireExtinguicher : MonoBehaviour
 {
+    public Player myPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +21,11 @@ public class FireExtinguicher : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         if (other.transform.tag != "fire") return;
-        if (Player.instance.mission[5] != true) return;
 
         Destroy(gameObject);
         Destroy(other.gameObject);
-        MissionManager.instance.FireMission(1);
+
+        if (Player.instance.mission[5] != true) return;
+        myPlayer.myScore += 1;
     }
 }

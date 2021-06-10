@@ -22,15 +22,6 @@ public class EnergyMission : MonoBehaviour
             GameObject.Find("Mission/EnergyMission/Energy" + i) };
         }
 
-        /*
-        energyButton = new GameObject[] {
-            GameObject.Find("Mission/EnergyMission/Energy1"),
-            GameObject.Find("Mission/EnergyMission/Energy2"),
-            GameObject.Find("Mission/EnergyMission/Energy3"),
-            GameObject.Find("Mission/EnergyMission/Energy4"),
-            GameObject.Find("Mission/EnergyMission/Energy5") };
-        */
-
     }
 
     void Update()

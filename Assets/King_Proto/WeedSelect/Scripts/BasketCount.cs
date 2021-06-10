@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasketCount : MonoBehaviour
 {
     public int count;
+    public Player myPlayer;
 
     void Start()
     {
@@ -23,7 +24,9 @@ public class BasketCount : MonoBehaviour
 
         if(count == 8)
         {
+            if (myPlayer.mission[9] != true) return;
             print("Mission Crear!!!!!!!!!");
+            myPlayer.myScore += 1;
         }
     }
 }

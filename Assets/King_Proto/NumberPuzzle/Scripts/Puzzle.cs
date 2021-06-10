@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Puzzle : MonoBehaviour
 {
     public static Puzzle instance ;
+    public Player myPlayer;
 
     public List<RawImage> image = new List<RawImage>();
     public List<int> num = new List<int>();
@@ -68,7 +69,12 @@ public class Puzzle : MonoBehaviour
                 }
             }
         
-        print("Mission Clear!!!!!!!"); return;
+        print("Mission Clear!!!!!!!");
+
+        if (myPlayer.mission[7] != true) return;
+
+        myPlayer.myScore += 1;
+        return;
     }
     
 }

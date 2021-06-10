@@ -8,7 +8,7 @@ public class MissionRand : MonoBehaviourPun
 {
     public List<int> randmis = new List<int>();
     public Text[] texts;
-
+    Player myPlayer;
 
     void Start()
     {
@@ -55,7 +55,7 @@ public class MissionRand : MonoBehaviourPun
     {
         //texts = (missionOrder + "번째 미션은?");
         print(missionOrder + "번째 미션은?");
-        Player.instance.mission[missionIdx] = true;
+        myPlayer.mission[missionIdx] = true;
         
         switch(missionIdx)
         {
@@ -103,12 +103,4 @@ public class MissionRand : MonoBehaviourPun
                 break;
         }
     }
-
-    //void missionOne()
-    //{
-    //    print("미션1 부여");
-
-    //    Text text = GetComponent<Text>();
-
-    //}
 }

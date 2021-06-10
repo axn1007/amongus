@@ -29,12 +29,13 @@ public class UIMan : MonoBehaviourPun
     public void OnClickVent(int idx)
     {
         photonView.RPC("MoveVentPos", RpcTarget.All, vent[idx].transform.position + new Vector3(0, 1.39f, 0));
+        Vent.instance.ventUI.SetActive(false);
     }
 
     public void OnClickEnergy(int idx)
     {
         EnergyMission.instance.energyBool[idx] = true;
-        MissionManager.instance.missionUI[1].SetActive(false);
+        //MissionManager.instance.missionUI[1].SetActive(false);
     }
 
 }

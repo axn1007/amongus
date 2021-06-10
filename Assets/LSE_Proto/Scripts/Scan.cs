@@ -6,13 +6,12 @@ public class Scan : MonoBehaviour
 {
     public float scanTime = 5.0f;
     float curTime;
+    public Player myPlayer;
 
     private void OnTriggerStay(Collider other)
     {
         if(other.transform.tag == "Player")
-        {
-            //print("Hello Player!");
-            
+        {            
             curTime += Time.deltaTime;
 
             if(curTime > scanTime)
@@ -20,7 +19,7 @@ public class Scan : MonoBehaviour
                 if (Player.instance.mission[0] != true) return;
 
                 print("Misson Complete!");
-                MissionManager.instance.ScanMission(1);
+                myPlayer.ScanMission(1);
                 curTime = 0;
             }
         }
@@ -31,10 +30,10 @@ public class Scan : MonoBehaviour
 
             if(curTime > scanTime)
             {
-                if (Player.instance.mission[3] != true) return;
+                if (myPlayer.mission[3] != true) return;
 
                 print("Mission Complete!");
-                MissionManager.instance.BottleMission(1);
+                myPlayer.myScore += 1;
                 curTime = 0;
             }
         }

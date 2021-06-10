@@ -13,10 +13,17 @@ public class Player : MonoBehaviourPun
     public bool crew;
     public bool vote;
     public int infoNum;
-    int i;
 
     float currTime;
     float dieTime = 1;
+
+    public int myScore;
+    float myGoalScore = 4.0f;
+    public Slider mySlider;
+    public bool missionComplete;
+    int scanCount;
+    public int energyCount;
+    int btnCount;
 
     public Text countDown;
     public GameObject[] intro;
@@ -60,18 +67,19 @@ public class Player : MonoBehaviourPun
         GameManager.instance.AddPlayer(this);
 
         StartCoroutine(ImOrCrew());
-        /*
+        
         if (photonView.IsMine)
         {
             GameObject go = GameObject.Find("VoteCanvas");
             go.GetComponent<OVRRaycaster>().enabled = true;
         }
-        */
+        
     }
 
     void Update()
     {
         UIClick();
+        MyMissionBar();
     }
 
     void UIClick()
@@ -127,34 +135,31 @@ public class Player : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
-    void CallCrewPos()
+    private void OnCollisionStay(Collision other)
     {
-        transform.position = myFirstPos + new Vector3(0, 1.39f, 0);
-    }
-
-    [PunRPC]
-    void RpcSetInit(Vector3 pos, int infoNum)
-    {
-        transform.position = pos + new Vector3(0, 1.39f, 0);
-        aiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
-        otherAiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
-    }
-
-    [PunRPC]
-    void MoveVentPos(Vector3 p)
-    {
-        transform.position = p;
-    }
-
-    [PunRPC]
-    void SetImposter(bool isImposter)
-    {
-        imposter = isImposter;
-        crew = !isImposter;
-        if(photonView.IsMine)
+        if (other.gameObject.tag == "knife")
         {
-            GameManager.instance.CountDown();
+            print(imposter);
+            if (imposter == true) return;
+
+            currTime += Time.deltaTime;
+            if (currTime > dieTime)
+            {
+                photonView.RPC("BeGhost", RpcTarget.All);
+
+                currTime = 0;
+            }
+        }
+
+    }
+
+    void MyMissionBar()
+    {
+        mySlider.value = myScore;
+
+        if(myScore == myGoalScore)
+        {
+            missionComplete = true;
         }
     }
 
@@ -187,7 +192,73 @@ public class Player : MonoBehaviourPun
             yield return new WaitForSeconds(5.0f);
             intro[2].SetActive(false);
             intro[3].SetActive(false);
-            
+
+        }
+    }
+
+    public void ScanMission(int count)
+    {
+        scanCount += count;
+        print(scanCount);
+        if (scanCount == 4)
+        {
+            print("ScanMission Complete");
+            myScore += 1;
+        }
+    }
+
+    public void EnergyMission(int count)
+    {
+        energyCount += count;
+
+        if (energyCount == 1)
+        {
+            myScore += 1;
+            print("EnergyMission Complete");
+        }
+    }
+
+    public void ButtonMission(int count)
+    {
+        btnCount += count;
+
+        if (btnCount == 2)
+        {
+            print("PressButtonMission Complete");
+            myScore += 1;
+        }
+    }
+
+
+
+    [PunRPC]
+    void CallCrewPos()
+    {
+        transform.position = myFirstPos + new Vector3(0, 1.39f, 0);
+    }
+
+    [PunRPC]
+    void RpcSetInit(Vector3 pos, int infoNum)
+    {
+        transform.position = pos + new Vector3(0, 1.39f, 0);
+        aiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
+        otherAiColor.GetComponent<SkinnedMeshRenderer>().material = colors[infoNum];
+    }
+
+    [PunRPC]
+    void MoveVentPos(Vector3 p)
+    {
+        transform.position = p;
+    }
+
+    [PunRPC]
+    void SetImposter(bool isImposter)
+    {
+        imposter = isImposter;
+        crew = !isImposter;
+        if(photonView.IsMine)
+        {
+            GameManager.instance.CountDown();
         }
     }
 
@@ -197,25 +268,16 @@ public class Player : MonoBehaviourPun
         GameManager.instance.AddCount(i);
     }
 
-    private void OnCollisionStay(Collision other)
+    [PunRPC]
+    void BeGhost()
     {
-        if (other.gameObject.tag == "knife")
+        if (photonView.IsMine)
         {
-            print(imposter);
-            if (imposter == true) return;
-
-            currTime += Time.deltaTime;
-            if (currTime > dieTime)
-            {
-                transform.GetChild(0).gameObject.SetActive(false);
-                transform.GetChild(2).gameObject.SetActive(false);
-                
-                currTime = 0;
-            }
+            transform.GetChild(0).gameObject.SetActive(false);
         }
-        
+        else
+        {
+            transform.GetChild(2).gameObject.SetActive(false);
+        }
     }
 }
-
-
-

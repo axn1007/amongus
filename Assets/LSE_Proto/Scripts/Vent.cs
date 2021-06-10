@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Vent : MonoBehaviour
 {
     public GameObject ventUI;
+    public Player myPlayer;
 
     public static Vent instance;
     public bool sliderBool;
@@ -31,8 +32,10 @@ public class Vent : MonoBehaviour
         {
             print("this is vent!");
 
-            if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            if (Input.GetKeyDown(KeyCode.Alpha2) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
+                if (myPlayer.imposter != true) return;
+
                 ventUI.SetActive(true);
             }
         }
@@ -41,11 +44,9 @@ public class Vent : MonoBehaviour
         {
             print("this is lever!");
 
-            if (Player.instance.mission[1] != true) return;
-
             if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
-                MissionManager.instance.missionUI[0].SetActive(true);
+                //MissionManager.instance.missionUI[0].SetActive(true);
                 sliderBool = true;
             }
         }
@@ -54,12 +55,12 @@ public class Vent : MonoBehaviour
         {
             print("this is energy");
 
-            if (Player.instance.mission[2] != true) return;
-            if (MissionManager.instance.energyCount == 1) return;
+            if (myPlayer.mission[2] != true) return;
+            if (myPlayer.energyCount == 1) return;
 
             if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
-                MissionManager.instance.missionUI[1].SetActive(true);
+                //MissionManager.instance.missionUI[1].SetActive(true);
             }
         }
 
@@ -71,7 +72,7 @@ public class Vent : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
-                MissionManager.instance.missionUI[2].SetActive(true);
+                //MissionManager.instance.missionUI[2].SetActive(true);
             }
         }
     }

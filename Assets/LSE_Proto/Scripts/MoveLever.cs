@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MoveLever : MonoBehaviour
 {
     public Slider slider;
+    Player myPlayer;
 
     void Start()
     {
@@ -18,14 +19,18 @@ public class MoveLever : MonoBehaviour
         {
             if (Vent.instance.sliderBool && slider.value == 100)
             {
-                if (Player.instance.mission[1] != true) return;
+                if (myPlayer.mission[1] != true) return;
 
                 print("LeverMission Complete!");
                 Vent.instance.sliderBool = false;
-                MissionManager.instance.LeverMission(1);
+                myPlayer.myScore += 1;
             }
 
-            //if (!Vent.instance.sliderBool) MissionManager.instance.missionUI[0].SetActive(false);
+            if (!Vent.instance.sliderBool)
+            {
+                //MissionManager.instance.missionUI[0].SetActive(false);
+                slider.value = 0;
+            }
         }
     }
 }

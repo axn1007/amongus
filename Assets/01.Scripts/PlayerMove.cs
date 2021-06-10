@@ -32,6 +32,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     public Animator myAni;
     public Animator otherAni;
 
+    public Player myPlayer;
+
     //등장한 플레이어들 담을 배열
     public int[] Players;
 
@@ -159,22 +161,6 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             //anim.SetTrigger("Walk");
             photonView.RPC("AniTrigger", RpcTarget.All, "Walk");
         }
-
-        /*
-        //만약 공격버튼(스페이스)을 누르면
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (photonView.IsMine)
-            {
-                //Attack 상태로 전이
-                state = PlayerState.Attack;
-                //Attack 애니로 변경
-                //anim.SetTrigger("Attack");
-                photonView.RPC("AniTrigger", RpcTarget.AllBuffered, "Attack");
-                isAttack = true;
-            }
-        }
-        */
     }
 
     void Walk()
@@ -187,8 +173,9 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             //anim.SetTrigger("Idle");
             photonView.RPC("AniTrigger", RpcTarget.All, "Idle");
         }
+    }
 
-        /*
+/*
         //만약 공격버튼(스페이스)을 누르면
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -202,10 +189,10 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
                 isAttack = true;
             }
         }
-        */
+        
     }
 
-    /*
+    
     void Attack()
     {
         Invoke("AttackKnife", 0.5f);
@@ -233,7 +220,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     {
         MoveCtrl();
     }
-    */
+*/
 
 
     [PunRPC]
@@ -399,11 +386,12 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         {
             if (hit.transform.tag == "energy")
             {
-                if (Player.instance.mission[2] != true) return;
-
                 Material mt = hit.transform.GetComponent<MeshRenderer>().material;
                 mt.color = Color.red;
-                MissionManager.instance.EnergyMission(1);
+
+                if (myPlayer.mission[2] != true) return;
+
+                myPlayer.EnergyMission(1);
             }
 
             if (hit.transform.tag == "button")
@@ -416,7 +404,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
                     if (Player.instance.mission[4] != true) return;
 
                     print(objectName + " Mission Complete!");
-                    MissionManager.instance.ButtonMission(1);
+                    myPlayer.ButtonMission(1);
                     currTime = 0;
                     Destroy(hit.collider.gameObject);
                 }
