@@ -31,6 +31,8 @@ public class Player : MonoBehaviourPun
     public GameObject knife;
     public GameObject otherKnife;
     Vector3 myFirstPos;
+    public GameObject boneFactory;
+    public bool die;
 
     public GameObject missionUI;
     public GameObject missionBar;
@@ -73,7 +75,6 @@ public class Player : MonoBehaviourPun
             GameObject go = GameObject.Find("VoteCanvas");
             go.GetComponent<OVRRaycaster>().enabled = true;
         }
-        
     }
 
     void Update()
@@ -274,10 +275,21 @@ public class Player : MonoBehaviourPun
         if (photonView.IsMine)
         {
             transform.GetChild(0).gameObject.SetActive(false);
+            InstBone();
         }
         else
         {
             transform.GetChild(2).gameObject.SetActive(false);
+        }
+    }
+
+    void InstBone()
+    {
+        if(die == false)
+        {
+            GameObject bone = Instantiate(boneFactory);
+            bone.transform.position = transform.position - new Vector3(0, 1.39f, 0);
+            die = true;
         }
     }
 }

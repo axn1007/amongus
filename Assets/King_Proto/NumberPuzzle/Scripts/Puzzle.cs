@@ -74,6 +74,7 @@ public class Puzzle : MonoBehaviour
         if (myPlayer.mission[7] != true) return;
 
         myPlayer.myScore += 1;
+        GameManager.instance.missionUi[2].SetActive(false);
         return;
     }
     

@@ -30,11 +30,6 @@ public class WeedSelcet : MonoBehaviour
             lr.SetPosition(0, transform.position);
             lr.SetPosition(1, hit.point);
         }
-        //else
-        //{
-        //    lr.SetPosition(0, transform.position);
-        //    lr.SetPosition(1, transform.position + transform.forward * 1);
-        //}
     }
 
     void WeedCatch()
@@ -66,32 +61,4 @@ public class WeedSelcet : MonoBehaviour
 
         }
     }
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    print("»Ì¾Ò½À´Ï´Ù");
-    //    Destroy(gameObject);
-    //    print("ÀâÃÊ ÆÄ±«");
-
-    //    //if (other.tag == "Weed")
-    //    //{
-    //    //    Rigidbody rb = weed.GetComponent<Rigidbody>();
-    //    //    rb.useGravity = true;
-    //    //}
-
-    //    //Ray ray = new Ray(transform.position, transform.forward);
-    //    //RaycastHit hit;
-
-    //    //if (Physics.Raycast(ray, out hit))
-    //    //{
-    //    //    for (int i = 0; i < wd.Length; i++)
-    //    //    {
-    //    //        if (hit.collider.gameObject == wd[i])
-    //    //        {
-    //    //            Rigidbody rb = wd[i].GetComponent<Rigidbody>();
-    //    //            rb.useGravity = true;
-    //    //        }
-    //    //    }
-    //    //}
-    //}
 }

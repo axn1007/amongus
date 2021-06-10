@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviourPun
     public bool[] isEmpty;
     public GameObject wall;
     public Player myPlayer;
+    public GameObject[] missionUi;
 
     //Player 객체들이 저장될 변수
     public List<Player> players = new List<Player>();

@@ -28,7 +28,7 @@ public class MoveLever : MonoBehaviour
 
             if (!Vent.instance.sliderBool)
             {
-                //MissionManager.instance.missionUI[0].SetActive(false);
+                GameManager.instance.missionUi[0].SetActive(false);
                 slider.value = 0;
             }
         }

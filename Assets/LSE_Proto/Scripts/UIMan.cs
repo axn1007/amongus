@@ -35,7 +35,7 @@ public class UIMan : MonoBehaviourPun
     public void OnClickEnergy(int idx)
     {
         EnergyMission.instance.energyBool[idx] = true;
-        //MissionManager.instance.missionUI[1].SetActive(false);
+        GameManager.instance.missionUi[1].SetActive(false);
     }
 
 }

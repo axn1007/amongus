@@ -42713,6 +42713,10 @@ MonoBehaviour:
   isEmpty: 
   wall: {fileID: 765301429}
   myPlayer: {fileID: 0}
+  missionUi:
+  - {fileID: 177548180}
+  - {fileID: 1387615272}
+  - {fileID: 2036184528}
   players: []
   sum: 0
   voteUi: {fileID: 2016757070}
@@ -95009,6 +95013,7 @@ GameObject:
   - component: {fileID: 2016757073}
   - component: {fileID: 2016757072}
   - component: {fileID: 2016757071}
+  - component: {fileID: 2016757075}
   m_Layer: 5
   m_Name: VoteCanvas
   m_TagString: Untagged
@@ -95055,7 +95060,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &2016757073
 Canvas:
   m_ObjectHideFlags: 0
@@ -95105,6 +95110,25 @@ RectTransform:
   m_AnchoredPosition: {x: 63.082, y: 3.3}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2016757075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016757070}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf960227867044282d921171d2d7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  pointer: {fileID: 0}
+  sortOrder: 0
 --- !u!4 &2017037734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4022878835285712, guid: ffde1e5de261c426bbfee2ff352f7205, type: 3}

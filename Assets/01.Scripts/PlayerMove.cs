@@ -146,7 +146,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     public float pressTime = 5.0f;
 
     float currTime;
-    float attackTime = 1.5f;
+    //float attackTime = 1.5f;
 
     public Transform catchedObj;
 

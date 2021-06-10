@@ -46,7 +46,7 @@ public class Vent : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
-                //MissionManager.instance.missionUI[0].SetActive(true);
+                GameManager.instance.missionUi[0].SetActive(true);
                 sliderBool = true;
             }
         }
@@ -60,7 +60,7 @@ public class Vent : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
-                //MissionManager.instance.missionUI[1].SetActive(true);
+                GameManager.instance.missionUi[1].SetActive(true);
             }
         }
 
@@ -72,7 +72,7 @@ public class Vent : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
-                //MissionManager.instance.missionUI[2].SetActive(true);
+                GameManager.instance.missionUi[2].SetActive(true);
             }
         }
     }
