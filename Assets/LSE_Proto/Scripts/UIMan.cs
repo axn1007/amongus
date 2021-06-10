@@ -31,68 +31,10 @@ public class UIMan : MonoBehaviourPun
         photonView.RPC("MoveVentPos", RpcTarget.All, vent[idx].transform.position + new Vector3(0, 1.39f, 0));
     }
 
-    public void OnClickVentOne()
+    public void OnClickEnergy(int idx)
     {
-        print("MainVent");
-        photonView.RPC("MoveVentPos", RpcTarget.All, vent[0].transform.position + new Vector3(0, 1.39f, 0));
-    }
-
-    public void OnClickVentTwo()
-    {
-        print("MainVent");
-        photonView.RPC("MoveVentPos", RpcTarget.All, vent[1]);
-    }
-
-    public void OnClickVentThree()
-    {
-        print("MainVent");
-        photonView.RPC("MoveVentPos", RpcTarget.All, vent[2]);
-    }
-
-    public void OnClickVentFour()
-    {
-        print("MainVent");
-        photonView.RPC("MoveVentPos", RpcTarget.All, vent[3]);
-    }
-
-    public void OnClickVentFive()
-    {
-        print("MainVent");
-        photonView.RPC("MoveVentPos", RpcTarget.All, vent[4]);
-    }
-
-    public void OnClickMainEnergy()
-    {
-        print("Go to MainRoom");
-        EnergyMission.instance.energyBool[0] = true;
+        EnergyMission.instance.energyBool[idx] = true;
         MissionManager.instance.missionUI[1].SetActive(false);
     }
 
-    public void OnClickFirstEnergy()
-    {
-        print("Go to FirstRoom");
-        EnergyMission.instance.energyBool[1] = true;
-        MissionManager.instance.missionUI[1].SetActive(false);
-    }
-
-    public void OnClickSecondEnergy()
-    {
-        print("Go to SecondRoom");
-        EnergyMission.instance.energyBool[2] = true;
-        MissionManager.instance.missionUI[1].SetActive(false);
-    }
-
-    public void OnClickThirdEnergy()
-    {
-        print("Go to ThirdRoom");
-        EnergyMission.instance.energyBool[3] = true;
-        MissionManager.instance.missionUI[1].SetActive(false);
-    }
-
-    public void OnClickForthEnergy()
-    {
-        print("Go to ForthRoom");
-        EnergyMission.instance.energyBool[4] = true;
-        MissionManager.instance.missionUI[1].SetActive(false);
-    }
 }
