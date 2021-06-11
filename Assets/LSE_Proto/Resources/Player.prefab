@@ -4864,7 +4864,7 @@ MonoBehaviour:
   knife: {fileID: 0}
   otherKnife: {fileID: 0}
   boneFactory: {fileID: 8626710804369859386, guid: 17943dd85123d284f9ab30ceec795e79, type: 3}
-  otherBody: {fileID: 7882421895900904403}
+  otherBody: {fileID: 0}
   die: 0
   kill: 0
   missionUI: {fileID: 7282641118471630165}

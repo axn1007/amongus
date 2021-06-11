@@ -28,10 +28,12 @@ public class Player : MonoBehaviourPun
     public Text countDown;
     public GameObject[] intro;
 
+    public bool call;
     public GameObject knife;
     public GameObject otherKnife;
     Vector3 myFirstPos;
     public GameObject boneFactory;
+    public GameObject otherBody;
     public bool die;
     public bool kill;
 
@@ -64,13 +66,16 @@ public class Player : MonoBehaviourPun
         {
             Vector3 pos = GameManager.instance.GetEmptyPos();
             photonView.RPC("RpcSetInit", RpcTarget.AllBuffered, pos, infoNum);
-            myFirstPos = pos;
         }
+
+        myFirstPos = GameManager.instance.playerPos[infoNum - 1].transform.position;
 
         GameManager.instance.AddPlayer(this);
 
         StartCoroutine(ImOrCrew());
-        
+
+        StartCoroutine(CallCrew());
+
         if (photonView.IsMine)
         {
             GameObject go = GameObject.Find("VoteCanvas");
@@ -128,24 +133,6 @@ public class Player : MonoBehaviourPun
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.transform.tag == "emergency")
-        {
-            CallCrew();
-        }
-    }
-
-    void CallCrew()
-    {
-        float v = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LHand);
-
-        if (Input.GetKeyDown(KeyCode.Alpha5) || v > 0)
-        {
-            photonView.RPC("CallCrewPos", RpcTarget.All);
-        }
-    }
-
     private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.tag == "knife")
@@ -156,7 +143,7 @@ public class Player : MonoBehaviourPun
             currTime += Time.deltaTime;
             if (currTime > dieTime)
             {
-                photonView.RPC("BeGhost", RpcTarget.All);
+                photonView.RPC("BeGhost", RpcTarget.All, infoNum);
                 kill = false;
                 currTime = 0;
             }
@@ -204,6 +191,31 @@ public class Player : MonoBehaviourPun
             intro[2].SetActive(false);
             intro[3].SetActive(false);
 
+        }
+    }
+
+    IEnumerator CallCrew()
+    {
+        while (call != true)
+        {
+            yield return null;
+        }
+
+        if(call == true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            print("5");
+            yield return new WaitForSeconds(1.0f);
+            print("4");
+            yield return new WaitForSeconds(1.0f);
+            print("3");
+            yield return new WaitForSeconds(1.0f);
+            print("2");
+            yield return new WaitForSeconds(1.0f);
+            print("1");
+            yield return new WaitForSeconds(1.0f);
+            print("EmergencyCall");
+            photonView.RPC("CallCrewPos", RpcTarget.All);
         }
     }
 
@@ -256,6 +268,7 @@ public class Player : MonoBehaviourPun
     void CallCrewPos()
     {
         transform.position = myFirstPos + new Vector3(0, 1.39f, 0);
+        vote = true;
     }
 
     [PunRPC]
@@ -290,17 +303,25 @@ public class Player : MonoBehaviourPun
     }
 
     [PunRPC]
-    void BeGhost()
+    void BeGhost(int i)
     {
         if (photonView.IsMine)
         {
             transform.GetChild(0).gameObject.SetActive(false);
-            InstBone();
         }
         else
         {
             transform.GetChild(2).gameObject.SetActive(false);
         }
+        InstBone();
+        GameManager.instance.voteUi.transform.GetChild(i).gameObject.SetActive(false);
+    }
+
+
+    [PunRPC]
+    void BeCall()
+    {
+        call = true;
     }
 
     void InstBone()
