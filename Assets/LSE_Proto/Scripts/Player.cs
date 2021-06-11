@@ -33,6 +33,7 @@ public class Player : MonoBehaviourPun
     Vector3 myFirstPos;
     public GameObject boneFactory;
     public bool die;
+    public bool kill;
 
     public GameObject missionUI;
     public GameObject missionBar;
@@ -81,6 +82,11 @@ public class Player : MonoBehaviourPun
     {
         UIClick();
         MyMissionBar();
+
+        if(kill == false)
+        {
+            KillReset();
+        }
     }
 
     void UIClick()
@@ -95,6 +101,8 @@ public class Player : MonoBehaviourPun
 
             if (imposter)
             {
+                if (kill != true) return;
+
                 photonView.RPC("AttackKnife", RpcTarget.All);
             }
         } 
@@ -112,6 +120,8 @@ public class Player : MonoBehaviourPun
 
                 if (imposter)
                 {
+                    if (kill != true) return;
+
                     photonView.RPC("DestroyKnife", RpcTarget.All);
                 }
             }
@@ -147,7 +157,7 @@ public class Player : MonoBehaviourPun
             if (currTime > dieTime)
             {
                 photonView.RPC("BeGhost", RpcTarget.All);
-
+                kill = false;
                 currTime = 0;
             }
         }
@@ -227,6 +237,16 @@ public class Player : MonoBehaviourPun
         {
             print("PressButtonMission Complete");
             myScore += 1;
+        }
+    }
+
+    void KillReset()
+    {
+        currTime += Time.deltaTime;
+        if (currTime > 30.0f)
+        {
+            kill = true;
+            currTime = 0;
         }
     }
 

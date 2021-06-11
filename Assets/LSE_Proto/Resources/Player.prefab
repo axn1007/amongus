@@ -4864,6 +4864,7 @@ MonoBehaviour:
   otherKnife: {fileID: 0}
   boneFactory: {fileID: 8626710804369859386, guid: 17943dd85123d284f9ab30ceec795e79, type: 3}
   die: 0
+  kill: 0
   missionUI: {fileID: 7282641118471630165}
   missionBar: {fileID: 7282641118807733962}
   aiColor: {fileID: 1884886533732985087}

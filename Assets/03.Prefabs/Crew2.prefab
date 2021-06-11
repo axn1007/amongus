@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 3370313448500737516}
   - component: {fileID: 3370313448500737298}
   - component: {fileID: 3370313448500737299}
-  - component: {fileID: 3370313448500737297}
-  - component: {fileID: 3370313448500737303}
-  - component: {fileID: 3370313448500737296}
+  - component: {fileID: -3044873839240254057}
   m_Layer: 5
   m_Name: Crew2
   m_TagString: Untagged
@@ -30,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 3370313448500737517}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5694169, y: 0.7021188, z: 1.1029831}
+  m_LocalScale: {x: 0.37618688, y: 0.39784142, z: 1.1834167}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3370313448500737297
+--- !u!114 &-3044873839240254057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,45 +85,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3370313448500737517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53d59bebf1a6ada458563eebede8d87e, type: 3}
+  m_Script: {fileID: 11500000, guid: d66c8cb26c8a6aa4b8abd193b0935f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floSpeed: 0.1
-  rotSpeed: 1
---- !u!58 &3370313448500737303
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3370313448500737517}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!50 &3370313448500737296
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3370313448500737517}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
