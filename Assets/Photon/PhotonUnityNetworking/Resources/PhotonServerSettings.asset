@@ -40,6 +40,22 @@ MonoBehaviour:
   - Fire
   - HeresWhy
   - RespawnSpaceship
+  - AddCount
+  - AniTrigger
+  - AttackKnife
+  - BeCall
+  - BeGhost
+  - CallCrewPos
+  - ChangeColour
+  - DestroyKnife
+  - MoveVentPos
+  - RpcButtonOne
+  - RpcCatchObj
+  - RpcDropObj
+  - RpcGrabObj
+  - RpcSetInit
+  - RpcThrowObj
+  - SetImposter
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
