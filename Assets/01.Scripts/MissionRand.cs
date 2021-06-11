@@ -8,7 +8,7 @@ public class MissionRand : MonoBehaviourPun
 {
     public List<int> randmis = new List<int>();
     public Text[] texts;
-    Player myPlayer;
+    public Player myPlayer;
 
     void Start()
     {

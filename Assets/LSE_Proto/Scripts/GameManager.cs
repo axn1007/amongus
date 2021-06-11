@@ -294,7 +294,7 @@ public class GameManager : MonoBehaviourPun
                         players[i].transform.GetChild(2).gameObject.SetActive(false);
 
                         //버튼 비활성화
-                        voteUi.transform.GetChild(bestIdx[0]).gameObject.SetActive(false);
+                        voteUi.transform.GetChild(bestIdx[0] + 1).gameObject.SetActive(false);
                     }
                 }
             }   

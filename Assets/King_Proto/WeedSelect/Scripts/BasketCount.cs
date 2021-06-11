@@ -19,8 +19,11 @@ public class BasketCount : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        if (other.transform.tag != "Weed") return;
+
         count++;
         print("잡초가 담겼습니다");
+        //other.transform.GetComponent<CapsuleCollider>().enabled = false;
 
         if(count == 8)
         {

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class Vent : MonoBehaviour
+public class Vent : MonoBehaviourPun
 {
     public GameObject ventUI;
     public Player myPlayer;
@@ -44,7 +45,7 @@ public class Vent : MonoBehaviour
         {
             print("this is lever!");
 
-            if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            if (Input.GetKeyDown(KeyCode.Alpha2) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
                 GameManager.instance.missionUi[0].SetActive(true);
                 sliderBool = true;
@@ -58,7 +59,7 @@ public class Vent : MonoBehaviour
             if (myPlayer.mission[2] != true) return;
             if (myPlayer.energyCount == 1) return;
 
-            if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            if(Input.GetKeyDown(KeyCode.Alpha2) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
                 GameManager.instance.missionUi[1].SetActive(true);
             }
@@ -70,9 +71,22 @@ public class Vent : MonoBehaviour
 
             if (Player.instance.mission[7] != true) return;
 
-            if (Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            if (Input.GetKeyDown(KeyCode.Alpha2) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
             {
                 GameManager.instance.missionUi[2].SetActive(true);
+            }
+        }
+
+        if (other.transform.tag == "call")
+        {
+            print("this is call");
+
+            if (Input.GetKeyDown(KeyCode.Alpha6) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            {
+                for (int i = 0; i < GameManager.instance.players.Count; i++)
+                {
+                    GameManager.instance.players[i].photonView.RPC("BeCall", RpcTarget.All);
+                }
             }
         }
     }
