@@ -242,7 +242,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             dir = Camera.main.transform.TransformDirection(dir);
             dir.y = 0;
 
-            transform.position += dir * moveSpeed * Time.deltaTime;
+           // transform.position += dir * moveSpeed * Time.deltaTime;
+            GetComponent<CharacterController>().Move(dir * moveSpeed * Time.deltaTime);
 
             Vector2 joyStick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch);
 
