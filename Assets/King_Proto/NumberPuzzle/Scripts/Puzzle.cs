@@ -7,6 +7,7 @@ public class Puzzle : MonoBehaviour
 {
     public static Puzzle instance ;
     public Player myPlayer;
+    public GameObject puzzleCanvas;
 
     public List<RawImage> image = new List<RawImage>();
     public List<int> num = new List<int>();
@@ -22,9 +23,7 @@ public class Puzzle : MonoBehaviour
     }
     void Start()
     {
-        Suffle();
-        Setting();
-        
+        StartCoroutine(Suffle());
     }
 
     void Update()
@@ -32,17 +31,27 @@ public class Puzzle : MonoBehaviour
         ClearClickNum();
     }
 
-    void Suffle()
+    IEnumerator Suffle()
     {
-        for (int i = 0; i < 100; i++)
+        while (puzzleCanvas.activeSelf == false)
         {
-            int tmp;
-            int rand1 = Random.Range(0, num.Count);
-            int rand2 = Random.Range(0, num.Count);
+            yield return null;
+        }
 
-            tmp = num[rand1];
-            num[rand1] = num[rand2];
-            num[rand2] = tmp;
+        if(puzzleCanvas.activeSelf == true)
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                int tmp;
+                int rand1 = Random.Range(0, num.Count);
+                int rand2 = Random.Range(0, num.Count);
+
+                tmp = num[rand1];
+                num[rand1] = num[rand2];
+                num[rand2] = tmp;
+            }
+
+            Setting();
         }
     }
 
@@ -60,14 +69,14 @@ public class Puzzle : MonoBehaviour
         if(clearNum.Count != clickValue.Count) return;
         
         
-            for (int i = 0; i < clickValue.Count; i++)
+        for (int i = 0; i < clickValue.Count; i++)
+        {
+            if (clickValue[i] != clearNum[i])
             {
-                if (clickValue[i] != clearNum[i])
-                {
-                    print("Mission Failed");
-                    return;
-                }
+                print("Mission Failed");
+                return;
             }
+        }
         
         print("Mission Clear!!!!!!!");
 

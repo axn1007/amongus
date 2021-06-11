@@ -8,7 +8,8 @@ public class UIMan : MonoBehaviourPun
 {
     public GameObject[] vent;
     public GameObject player;
-    
+    public Button[] btn;
+
     void Start()
     {
         vent = new GameObject[]
@@ -36,6 +37,7 @@ public class UIMan : MonoBehaviourPun
     {
         EnergyMission.instance.energyBool[idx] = true;
         GameManager.instance.missionUi[1].SetActive(false);
+        btn[idx].interactable = false;
     }
 
 }

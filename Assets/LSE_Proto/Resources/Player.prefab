@@ -4860,9 +4860,11 @@ MonoBehaviour:
   - {fileID: 3713410023627006944}
   - {fileID: 6974653088198398264}
   - {fileID: 3536068917020100447}
+  call: 0
   knife: {fileID: 0}
   otherKnife: {fileID: 0}
   boneFactory: {fileID: 8626710804369859386, guid: 17943dd85123d284f9ab30ceec795e79, type: 3}
+  otherBody: {fileID: 7882421895900904403}
   die: 0
   kill: 0
   missionUI: {fileID: 7282641118471630165}
@@ -6246,6 +6248,7 @@ MonoBehaviour:
   - {fileID: 2965537266137799878, guid: aee3547fa20530b479f38d5323c01b37, type: 3}
   - {fileID: 2996947864769179998, guid: 82efff183766faf468de7fbd93cd95cf, type: 3}
   player: {fileID: 4794279041418772637}
+  btn: []
 --- !u!114 &4794279042389505697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10449,6 +10452,7 @@ MonoBehaviour:
   - {fileID: 7282641118039710066}
   - {fileID: 7282641120075115089}
   - {fileID: 7282641119893111064}
+  myPlayer: {fileID: 9152152538276663945}
 --- !u!114 &7282641118946398985
 MonoBehaviour:
   m_ObjectHideFlags: 0

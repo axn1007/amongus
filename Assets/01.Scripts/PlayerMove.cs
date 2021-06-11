@@ -406,7 +406,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
                     print(objectName + " Mission Complete!");
                     myPlayer.ButtonMission(1);
                     currTime = 0;
-                    Destroy(hit.collider.gameObject);
+                    //Destroy(hit.collider.gameObject);
+                    hit.collider.gameObject.SetActive(false);
                 }
             }
             
