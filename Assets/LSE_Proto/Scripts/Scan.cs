@@ -20,6 +20,11 @@ public class Scan : MonoBehaviour
 
                 print("Misson Complete!");
                 myPlayer.ScanMission(1);
+
+                Transform mt = this.gameObject.transform.GetChild(1);
+                mt.GetChild(0).gameObject.SetActive(false);
+                mt.GetChild(1).gameObject.SetActive(true);
+
                 curTime = 0;
             }
         }
@@ -30,10 +35,13 @@ public class Scan : MonoBehaviour
 
             if(curTime > scanTime)
             {
-                if (myPlayer.mission[3] != true) return;
+                //if (myPlayer.mission[3] != true) return;
 
                 print("Mission Complete!");
                 myPlayer.myScore += 1;
+
+                other.GetComponent<MeshRenderer>().material.color = Color.white;
+                
                 curTime = 0;
             }
         }

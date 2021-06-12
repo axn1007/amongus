@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class Player : MonoBehaviourPun
 {
@@ -21,7 +21,7 @@ public class Player : MonoBehaviourPun
     float myGoalScore = 4.0f;
     public Slider mySlider;
     public bool missionComplete;
-    int scanCount;
+    public int scanCount;
     public int energyCount;
     int btnCount;
 
@@ -88,7 +88,10 @@ public class Player : MonoBehaviourPun
         UIClick();
         MyMissionBar();
 
-        if(kill == false)
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+        if (kill == false)
         {
             KillReset();
         }
@@ -223,7 +226,7 @@ public class Player : MonoBehaviourPun
     {
         scanCount += count;
         print(scanCount);
-        if (scanCount == 4)
+        if (scanCount == 2)
         {
             print("ScanMission Complete");
             myScore += 1;

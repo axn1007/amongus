@@ -33,7 +33,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         //Vector2 originPos = Random.insideUnitCircle * 2.0f;
         Vector2 originPos = new Vector2(54.6f, 5.6f);
-        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate("Player", GameManager.instance.playerPos[0].transform.position + new Vector3(0, 1.39f, 0), Quaternion.identity);
         //PhotonNetwork.Instantiate("Player", new Vector3(originPos.x, 1.39f, originPos.y), Quaternion.identity);
     }
 

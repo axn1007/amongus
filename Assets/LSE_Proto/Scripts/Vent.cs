@@ -27,6 +27,22 @@ public class Vent : MonoBehaviourPun
         
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.tag == "call")
+        {
+            print("this is call");
+
+            if (Input.GetKeyDown(KeyCode.Alpha6) || OVRInput.GetDown(OVRInput.Button.PrimaryThumbstickDown, OVRInput.Controller.RTouch))
+            {
+                for (int i = 0; i < GameManager.instance.players.Count; i++)
+                {
+                    GameManager.instance.players[i].photonView.RPC("BeCall", RpcTarget.All);
+                }
+            }
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.transform.tag == "vent")

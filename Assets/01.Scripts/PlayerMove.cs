@@ -242,8 +242,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             dir = Camera.main.transform.TransformDirection(dir);
             dir.y = 0;
 
-           // transform.position += dir * moveSpeed * Time.deltaTime;
-            GetComponent<CharacterController>().Move(dir * moveSpeed * Time.deltaTime);
+            transform.position += dir * moveSpeed * Time.deltaTime;
+            //GetComponent<CharacterController>().Move(dir * moveSpeed * Time.deltaTime);
 
             Vector2 joyStick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.RTouch);
 
@@ -387,8 +387,10 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         {
             if (hit.transform.tag == "energy")
             {
-                Material mt = hit.transform.GetComponent<MeshRenderer>().material;
-                mt.color = Color.red;
+                //Material mt = hit.transform.GetComponent<MeshRenderer>().material;
+                Transform mt = hit.transform.GetChild(0);
+                mt.GetChild(0).gameObject.SetActive(false);
+                mt.GetChild(1).gameObject.SetActive(true);
 
                 if (myPlayer.mission[2] != true) return;
 
