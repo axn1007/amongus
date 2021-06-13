@@ -2849,6 +2849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 999751766}
   - component: {fileID: 999751767}
+  - component: {fileID: 2054879573465856825}
   m_Layer: 0
   m_Name: CrewManager
   m_TagString: Untagged
@@ -2877,7 +2878,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999751765}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85504b5a5cc8c3242a9f1051a9b26f94, type: 3}
   m_Name: 
@@ -2886,6 +2887,30 @@ MonoBehaviour:
   - {fileID: 939359522606629359, guid: 742f30549be21484c91292fdd3dad5c5, type: 3}
   image: {fileID: 2146888319}
   pos: {fileID: 2117401353}
+--- !u!114 &2054879573465856825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999751765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2ac6ede79df19142b22e257a7b58825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewFactory:
+  - {fileID: 5832709403954400181, guid: 36cf7190a8a7cc14298d24b12eb5d839, type: 3}
+  - {fileID: 3370313448500737517, guid: 89177b00b4f7afc42be118b97ec26747, type: 3}
+  - {fileID: 8297850011767632349, guid: d766c4d9ca576dc469e72191afdfb565, type: 3}
+  - {fileID: 8842217434662389229, guid: 169a433a70d7ebe4485f681c14165e16, type: 3}
+  - {fileID: 1993676155834040122, guid: e02eff40cbe07764082c32c0258d541d, type: 3}
+  - {fileID: 939359522606629359, guid: 742f30549be21484c91292fdd3dad5c5, type: 3}
+  - {fileID: 7484158670953289934, guid: 4ba398d4798e924428919a3e2a925442, type: 3}
+  - {fileID: 1151534922384683575, guid: 20d813db969800543af9470432025fa1, type: 3}
+  image: {fileID: 2146888319}
+  pos: {fileID: 2117401353}
+  crewFac: 0
 --- !u!1 &1003013977
 GameObject:
   m_ObjectHideFlags: 0
@@ -9347,7 +9372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1556442904
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15701,7 +15726,7 @@ MeshCollider:
   m_GameObject: {fileID: 1946524408}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -21073,7 +21098,6 @@ MonoBehaviour:
   - {fileID: 3713410023627006944}
   - {fileID: 6974653088198398264}
   - {fileID: 3536068917020100447}
-  - {fileID: 3536068917020100447}
   - {fileID: 935356925}
   - {fileID: 1716380591}
   - {fileID: 1185106321}
@@ -21081,11 +21105,12 @@ MonoBehaviour:
   - {fileID: 1634146788}
   - {fileID: 1300188534}
   - {fileID: 112260007}
+  - {fileID: 191766727}
   call: 0
-  knife: {fileID: 0}
-  otherKnife: {fileID: 0}
+  knife: {fileID: 156966, guid: 15c35457c5d99e541bcb2560699d4420, type: 3}
+  otherKnife: {fileID: 156966, guid: 15c35457c5d99e541bcb2560699d4420, type: 3}
   boneFactory: {fileID: 8626710804369859386, guid: 17943dd85123d284f9ab30ceec795e79, type: 3}
-  otherBody: {fileID: 0}
+  otherBody: {fileID: 7882421895900904403}
   die: 0
   kill: 0
   missionUI: {fileID: 7282641118471630165}

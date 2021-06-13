@@ -222,7 +222,6 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     }
 */
 
-
     [PunRPC]
     void AniTrigger(string state)
     {
