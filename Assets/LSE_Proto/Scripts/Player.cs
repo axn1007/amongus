@@ -24,7 +24,7 @@ public class Player : MonoBehaviourPun
     public int scanCount;
     public int energyCount;
     int btnCount;
-
+    public Text uiText;
     public Text countDown;
     public GameObject[] intro;
 
@@ -305,13 +305,6 @@ public class Player : MonoBehaviourPun
     {
         GameManager.instance.AddCount(i);
     }
-    /*
-    [PunRPC]
-    void SetText(int i, string s)
-    {
-        GameManager.instance.SetText(i, s);
-    }
-    */
 
     [PunRPC]
     void BeGhost(int i)

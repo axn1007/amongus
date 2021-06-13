@@ -349,15 +349,13 @@ public class GameManager : MonoBehaviourPun
                         //임포스터라면
                         if(players[i].imposter == true)
                         {
-                            //myPlayer.photonView.RPC("SetText", RpcTarget.All, (bestIdx[0] + 1), " 번째 플레이어는 임포스터 였습니다.");
-                            text.text = (bestIdx[0] + 1) + " 번째 플레이어는 임포스터 였습니다.";
+                            myPlayer.uiText.text = "축하합니다! 임포스터 입니다.";
                         }
 
                         //크루라면
                         if(players[i].crew == true)
                         {
-                            //myPlayer.photonView.RPC("SetText", RpcTarget.All, (bestIdx[0] + 1), " 번째 플레이어는 임포스터가 아니였습니다.");
-                            text.text = (bestIdx[0] + 1) + " 번째 플레이어는 임포스터가 아니였습니다.";
+                            myPlayer.uiText.text = "아쉽습니다. 임포스터가 아니었습니다.";
                         }
 
                         myPlayer.intro[9].SetActive(true);
@@ -365,7 +363,7 @@ public class GameManager : MonoBehaviourPun
                 }
             }
 
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(10.0f);
             myPlayer.intro[8].SetActive(false);
             myPlayer.intro[9].SetActive(false);
         }
@@ -376,10 +374,4 @@ public class GameManager : MonoBehaviourPun
         arrayCount[i, 1] += 1;
         sum += 1;
     }
-    /*
-    public void SetText(int i, string s)
-    {
-        text.text = i + s;
-    }
-    */
 }
