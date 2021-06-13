@@ -297,7 +297,11 @@ public class GameManager : MonoBehaviourPun
                         voteUi.transform.GetChild(bestIdx[0] + 1).gameObject.SetActive(false);
                     }
                 }
-            }   
+            }
+
+            yield return new WaitForSeconds(2.0f);
+
+            // 승리조건 판정
         }
     }
 
