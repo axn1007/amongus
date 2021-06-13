@@ -376,9 +376,10 @@ public class GameManager : MonoBehaviourPun
         arrayCount[i, 1] += 1;
         sum += 1;
     }
-
+    /*
     public void SetText(int i, string s)
     {
         text.text = i + s;
     }
+    */
 }
