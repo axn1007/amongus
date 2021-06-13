@@ -40,4 +40,12 @@ public class UIMan : MonoBehaviourPun
         btn[idx].interactable = false;
     }
 
+    public void OnClickExit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

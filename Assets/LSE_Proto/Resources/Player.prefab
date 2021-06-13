@@ -11039,6 +11039,7 @@ GameObject:
   - component: {fileID: 4456793192471604710}
   - component: {fileID: 4456793192471604705}
   - component: {fileID: 4456793192471604704}
+  - component: {fileID: 6968161933347415484}
   m_Layer: 5
   m_Name: CrewWinCanvas
   m_TagString: Untagged
@@ -11127,6 +11128,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6968161933347415484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456793192471604707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf960227867044282d921171d2d7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  pointer: {fileID: 0}
+  sortOrder: 0
 --- !u!1 &4456793192528525515
 GameObject:
   m_ObjectHideFlags: 0
@@ -13105,6 +13125,7 @@ GameObject:
   - component: {fileID: 4456793193295711858}
   - component: {fileID: 4456793193295711629}
   - component: {fileID: 4456793193295711628}
+  - component: {fileID: 2402564325189599298}
   m_Layer: 5
   m_Name: ImWinCanvas
   m_TagString: Untagged
@@ -13193,6 +13214,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2402564325189599298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4456793193295711631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aaf960227867044282d921171d2d7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  pointer: {fileID: 0}
+  sortOrder: 0
 --- !u!1 &4456793193309595614
 GameObject:
   m_ObjectHideFlags: 0
@@ -13326,7 +13366,6 @@ MonoBehaviour:
   - {fileID: 7484158670953289934, guid: 4ba398d4798e924428919a3e2a925442, type: 3}
   image: {fileID: 4456793192359235085}
   pos: {fileID: 4456793192329748347}
-  crewFac: 0
 --- !u!1 &4456793193497600811
 GameObject:
   m_ObjectHideFlags: 0
@@ -15473,6 +15512,7 @@ GameObject:
   - component: {fileID: 5696352156455283424}
   - component: {fileID: 5696352156455283431}
   - component: {fileID: 5696352156455283430}
+  - component: {fileID: 877559274667200494}
   m_Layer: 5
   m_Name: ExitBtn (1)
   m_TagString: Untagged
@@ -15582,9 +15622,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 9174121237503054546}
+        m_TargetAssemblyTypeName: UIMan, Assembly-CSharp
+        m_MethodName: OnClickExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15594,6 +15634,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!64 &877559274667200494
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696352156455283428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5696352156801315973
 GameObject:
   m_ObjectHideFlags: 0
@@ -15760,6 +15814,7 @@ GameObject:
   - component: {fileID: 5696352157210895483}
   - component: {fileID: 5696352157210895482}
   - component: {fileID: 5696352157210895481}
+  - component: {fileID: 1221981641342143726}
   m_Layer: 5
   m_Name: ExitBtn
   m_TagString: Untagged
@@ -15869,9 +15924,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 9174121237503054546}
+        m_TargetAssemblyTypeName: UIMan, Assembly-CSharp
+        m_MethodName: OnClickExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15881,6 +15936,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!64 &1221981641342143726
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696352157210895487}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &5696352157666696641
 GameObject:
   m_ObjectHideFlags: 0
@@ -23980,7 +24049,7 @@ MonoBehaviour:
   call: 0
   knife: {fileID: 156966, guid: 15c35457c5d99e541bcb2560699d4420, type: 3}
   otherKnife: {fileID: 156966, guid: 15c35457c5d99e541bcb2560699d4420, type: 3}
-  boneFactory: {fileID: 8626710804369859386, guid: 17943dd85123d284f9ab30ceec795e79, type: 3}
+  boneFactory: {fileID: 1936352839029465122, guid: 17943dd85123d284f9ab30ceec795e79, type: 3}
   otherBody: {fileID: 5817042375564484513}
   die: 0
   kill: 0
