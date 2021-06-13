@@ -305,12 +305,13 @@ public class Player : MonoBehaviourPun
     {
         GameManager.instance.AddCount(i);
     }
-
+    /*
     [PunRPC]
     void SetText(int i, string s)
     {
         GameManager.instance.SetText(i, s);
     }
+    */
 
     [PunRPC]
     void BeGhost(int i)
