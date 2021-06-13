@@ -14,7 +14,10 @@ public class GameManager : MonoBehaviourPun
     public GameObject wall;
     public Player myPlayer;
     public GameObject[] missionUi;
+    public bool result;
+    public bool startGame;
 
+    public Text text;
     int crews;
 
     //Player 객체들이 저장될 변수
@@ -57,7 +60,9 @@ public class GameManager : MonoBehaviourPun
     }
 
     void Update()
-    {
+    {/*
+        if (result == true) return;
+
         for (int i = 0; i < players.Count; i++)
         {
             if (players[i].crew == true)
@@ -73,6 +78,7 @@ public class GameManager : MonoBehaviourPun
                 if(players[i].die == true)
                 {
                     myPlayer.intro[6].SetActive(true);
+                    result = true;
                 }
             }
         }
@@ -86,8 +92,9 @@ public class GameManager : MonoBehaviourPun
         if (crews < 2)
         {
             myPlayer.intro[4].SetActive(true);
-            return;
+            result = true;
         }
+        */
     }
 
     public Vector3 GetEmptyPos()
@@ -107,15 +114,18 @@ public class GameManager : MonoBehaviourPun
     //담아둔 Players배열을 랜덤으로 돌려서 첫번째를 임포스터로 선정
     IEnumerator ImposterRand()
     {
-        while (players.Count != 4)
+        while (players.Count != 2)
         {
             yield return null;
         }
 
         if (PhotonNetwork.IsMasterClient)
         {
-            if (players.Count == 4)
+
+            if (players.Count == 2)
             {
+                startGame = true;
+
                 print("랜덤!");
                 for (int i = 0; i < 100; i++)
                 {
@@ -280,12 +290,12 @@ public class GameManager : MonoBehaviourPun
 
     IEnumerator SortVoting()
     {
-        while (sum != 4)
+        while (sum != 2)
         {
             yield return null;
         }
 
-        if (sum == 4)
+        if (sum == 2)
         {
             print("투표");
 
@@ -339,13 +349,13 @@ public class GameManager : MonoBehaviourPun
                         //임포스터라면
                         if(players[i].imposter == true)
                         {
-                            //텍스트값 넘겨
+                            text.text = (bestIdx[0] + 1) + " 번째 플레이어는 임포스터 였습니다.";
                         }
 
                         //크루라면
                         if(players[i].crew == true)
                         {
-                            //텍스트값 넘겨
+                            text.text = (bestIdx[0] + 1) + " 번째 플레이어는 임포스터가 아니였습니다.";
                         }
 
                         myPlayer.intro[9].SetActive(true);
