@@ -13281,7 +13281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4456793193493718052}
-  - component: {fileID: 4456793193493718053}
+  - component: {fileID: 7221587147125843846}
   m_Layer: 0
   m_Name: CrewManager
   m_TagString: Untagged
@@ -13303,7 +13303,7 @@ Transform:
   m_Father: {fileID: 4456793192664940202}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4456793193493718053
+--- !u!114 &7221587147125843846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13312,13 +13312,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 4456793193493718055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85504b5a5cc8c3242a9f1051a9b26f94, type: 3}
+  m_Script: {fileID: 11500000, guid: b2ac6ede79df19142b22e257a7b58825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   crewFactory:
+  - {fileID: 5832709403954400181, guid: 36cf7190a8a7cc14298d24b12eb5d839, type: 3}
+  - {fileID: 3370313448500737517, guid: 89177b00b4f7afc42be118b97ec26747, type: 3}
+  - {fileID: 8297850011767632349, guid: d766c4d9ca576dc469e72191afdfb565, type: 3}
+  - {fileID: 8842217434662389229, guid: 169a433a70d7ebe4485f681c14165e16, type: 3}
+  - {fileID: 1993676155834040122, guid: e02eff40cbe07764082c32c0258d541d, type: 3}
   - {fileID: 939359522606629359, guid: 742f30549be21484c91292fdd3dad5c5, type: 3}
+  - {fileID: 1151534922384683575, guid: 20d813db969800543af9470432025fa1, type: 3}
+  - {fileID: 7484158670953289934, guid: 4ba398d4798e924428919a3e2a925442, type: 3}
   image: {fileID: 4456793192359235085}
   pos: {fileID: 4456793192329748347}
+  crewFac: 0
 --- !u!1 &4456793193497600811
 GameObject:
   m_ObjectHideFlags: 0
@@ -24388,6 +24396,10 @@ PrefabInstance:
     - target: {fileID: 1624888977480635632, guid: bed185e984114234eaed966206605b60, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624888977480635633, guid: bed185e984114234eaed966206605b60, type: 3}
+      propertyPath: m_Text
+      value: "~\uB294 \uC784\uBAA8\uC2A4\uD130\uAC00 \uB9DE\uC2B5\uB2C8\uB2E4.(\uC544\uB2D9\uB2C8\uB2E4)"
       objectReference: {fileID: 0}
     - target: {fileID: 1624888977480635647, guid: bed185e984114234eaed966206605b60, type: 3}
       propertyPath: m_Name

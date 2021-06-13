@@ -167,12 +167,12 @@ public class Player : MonoBehaviourPun
 
     IEnumerator ImOrCrew()
     {
-        while (GameManager.instance.players.Count != 2)
+        while (GameManager.instance.players.Count != 3)
         {
             yield return null;
         }
 
-        if (GameManager.instance.players.Count == 2)
+        if (GameManager.instance.players.Count == 3)
         {
             yield return new WaitForSeconds(20.0f);
             intro[1].SetActive(false);
@@ -325,7 +325,7 @@ public class Player : MonoBehaviourPun
             transform.GetChild(2).gameObject.SetActive(false);
         }
         InstBone();
-        GameManager.instance.voteUi.transform.GetChild(i).gameObject.SetActive(false);
+        GameManager.instance.voteUi.transform.GetChild(i + 2).gameObject.SetActive(false);
     }
 
 

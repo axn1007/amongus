@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviourPun
     //담아둔 Players배열을 랜덤으로 돌려서 첫번째를 임포스터로 선정
     IEnumerator ImposterRand()
     {
-        while (players.Count != 2)
+        while (players.Count != 3)
         {
             yield return null;
         }
@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient)
         {
 
-            if (players.Count == 2)
+            if (players.Count == 3)
             {
                 startGame = true;
 
@@ -290,12 +290,12 @@ public class GameManager : MonoBehaviourPun
 
     IEnumerator SortVoting()
     {
-        while (sum != 2)
+        while (sum != 3)
         {
             yield return null;
         }
 
-        if (sum == 2)
+        if (sum == 3)
         {
             print("투표");
 
@@ -341,10 +341,10 @@ public class GameManager : MonoBehaviourPun
                         players[i].die = true;
 
                         //버튼 비활성화
-                        voteUi.transform.GetChild(bestIdx[0] + 1).gameObject.SetActive(false);
+                        voteUi.transform.GetChild(bestIdx[0] + 3).gameObject.SetActive(false);
 
                         //누가 죽었는지 띄우기
-                        VoteResult.instance.crewFac = bestIdx[0];
+                        //VoteResult.instance.crewFac = bestIdx[0];
 
                         //임포스터라면
                         if(players[i].imposter == true)
