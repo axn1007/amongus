@@ -307,6 +307,12 @@ public class Player : MonoBehaviourPun
     }
 
     [PunRPC]
+    void SetText(int i, string s)
+    {
+        GameManager.instance.SetText(i, s);
+    }
+
+    [PunRPC]
     void BeGhost(int i)
     {
         if (photonView.IsMine)
