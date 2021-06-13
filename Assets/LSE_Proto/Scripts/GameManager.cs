@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviourPun
     public Player myPlayer;
     public GameObject[] missionUi;
 
+    int crews;
+
     //Player 객체들이 저장될 변수
     public List<Player> players = new List<Player>();
 
@@ -56,7 +58,36 @@ public class GameManager : MonoBehaviourPun
 
     void Update()
     {
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i].crew == true)
+            {
+                if (players[i].die == false)
+                {
+                    crews++;
+                }
+            }
 
+            if(players[i].imposter == true)
+            {
+                if(players[i].die == true)
+                {
+                    myPlayer.intro[6].SetActive(true);
+                }
+            }
+        }
+
+        if (crews > 2)
+        {
+            crews = 0;
+            return;
+        }
+
+        if (crews < 2)
+        {
+            myPlayer.intro[4].SetActive(true);
+            return;
+        }
     }
 
     public Vector3 GetEmptyPos()
@@ -275,9 +306,14 @@ public class GameManager : MonoBehaviourPun
             }
             print(bestIdx[0]);
 
+            myPlayer.intro[1].SetActive(true);
+            yield return new WaitForSeconds(3.0f);
+            myPlayer.intro[1].SetActive(false);
+
             if (bestIdx.Count > 1)
             {
                 print("부결!");
+                myPlayer.intro[8].SetActive(true);
             }
 
             else
@@ -292,16 +328,34 @@ public class GameManager : MonoBehaviourPun
                         print(players[i].infoNum);
                         print("비교 끝!");
                         players[i].transform.GetChild(2).gameObject.SetActive(false);
+                        players[i].die = true;
 
                         //버튼 비활성화
                         voteUi.transform.GetChild(bestIdx[0] + 1).gameObject.SetActive(false);
+
+                        //누가 죽었는지 띄우기
+                        VoteResult.instance.crewFac = bestIdx[0];
+
+                        //임포스터라면
+                        if(players[i].imposter == true)
+                        {
+                            //텍스트값 넘겨
+                        }
+
+                        //크루라면
+                        if(players[i].crew == true)
+                        {
+                            //텍스트값 넘겨
+                        }
+
+                        myPlayer.intro[9].SetActive(true);
                     }
                 }
             }
 
             yield return new WaitForSeconds(2.0f);
-
-            // 승리조건 판정
+            myPlayer.intro[8].SetActive(false);
+            myPlayer.intro[9].SetActive(false);
         }
     }
 

@@ -148,6 +148,7 @@ public class Player : MonoBehaviourPun
             {
                 photonView.RPC("BeGhost", RpcTarget.All, infoNum);
                 kill = false;
+                die = true;
                 currTime = 0;
             }
         }
