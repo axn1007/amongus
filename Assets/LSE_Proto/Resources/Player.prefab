@@ -23961,19 +23961,18 @@ MonoBehaviour:
   - {fileID: 1031635983661844370}
   - {fileID: 6706783212349224266}
   - {fileID: 921854987364852525}
-  - {fileID: 921854987364852525}
   - {fileID: 4456793193295711631}
   - {fileID: 4456793191928596445}
   - {fileID: 4456793192471604707}
   - {fileID: 4456793193701188815}
   - {fileID: 4456793191980629398}
   - {fileID: 4456793192586160388}
-  - {fileID: 0}
+  - {fileID: 4456793193759589557}
   call: 0
-  knife: {fileID: 0}
-  otherKnife: {fileID: 0}
+  knife: {fileID: 156966, guid: 15c35457c5d99e541bcb2560699d4420, type: 3}
+  otherKnife: {fileID: 156966, guid: 15c35457c5d99e541bcb2560699d4420, type: 3}
   boneFactory: {fileID: 8626710804369859386, guid: 17943dd85123d284f9ab30ceec795e79, type: 3}
-  otherBody: {fileID: 0}
+  otherBody: {fileID: 5817042375564484513}
   die: 0
   kill: 0
   missionUI: {fileID: 6397528510841407783}
