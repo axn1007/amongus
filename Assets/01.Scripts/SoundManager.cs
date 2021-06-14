@@ -20,7 +20,6 @@ public class SoundManager : MonoBehaviour
         EFT_VoteBye,
         EFT_ImWin,
         EFT_CrewWin,
-        EFT_Bye,
         EFT_MOpen,
         EFT_Door,
         EFT_GameGo,
