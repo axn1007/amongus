@@ -43,7 +43,7 @@ public class Player : MonoBehaviourPun
     public GameObject aiColor;
     public GameObject otherAiColor;
     public AudioListener audioListener;
-
+    
     public List<Material> colors = new List<Material>();
 
     private void Awake()
@@ -233,6 +233,8 @@ public class Player : MonoBehaviourPun
             yield return new WaitForSeconds(1.0f);
             print("EmergencyCall");
             intro[5].SetActive(false);
+            GameManager.instance.photonVoice.SetActive(true);
+            GameManager.instance.voteUi.SetActive(true);
             photonView.RPC("CallCrewPos", RpcTarget.All);
         }
     }

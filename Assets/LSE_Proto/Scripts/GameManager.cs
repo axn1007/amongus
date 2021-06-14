@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviourPun
     public int infoIdx;
     public int sum;
     public GameObject voteUi;
+    public GameObject photonVoice;
 
     public void AddPlayer(Player player)
     {
@@ -154,6 +155,7 @@ public class GameManager : MonoBehaviourPun
         Player.instance.intro[1].SetActive(true);
         yield return new WaitForSeconds(10.0f);
         Destroy(wall);
+        photonVoice.SetActive(false);
     }
 
     //투표시스템
@@ -346,7 +348,8 @@ public class GameManager : MonoBehaviourPun
             yield return new WaitForSeconds(10.0f);
             myPlayer.intro[8].SetActive(false);
             myPlayer.intro[9].SetActive(false);
-
+            photonVoice.SetActive(false);
+            voteUi.SetActive(false);
             result = true;            
         }
     }
