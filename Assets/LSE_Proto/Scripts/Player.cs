@@ -170,12 +170,12 @@ public class Player : MonoBehaviourPun
 
     IEnumerator ImOrCrew()
     {
-        while (GameManager.instance.players.Count != 3)
+        while (GameManager.instance.players.Count != 4)
         {
             yield return null;
         }
 
-        if (GameManager.instance.players.Count == 3)
+        if (GameManager.instance.players.Count == 4)
         {
             yield return new WaitForSeconds(20.0f);
             intro[1].SetActive(false);

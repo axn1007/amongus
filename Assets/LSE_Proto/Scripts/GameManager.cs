@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviourPun
     //담아둔 Players배열을 랜덤으로 돌려서 첫번째를 임포스터로 선정
     IEnumerator ImposterRand()
     {
-        while (players.Count != 3)
+        while (players.Count != 4)
         {
             yield return null;
         }
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient)
         {
 
-            if (players.Count == 3)
+            if (players.Count == 4)
             {
                 startGame = true;
 
@@ -274,12 +274,12 @@ public class GameManager : MonoBehaviourPun
 
     IEnumerator SortVoting()
     {
-        while (sum != 3)
+        while (sum != 4)
         {
             yield return null;
         }
 
-        if (sum == 3)
+        if (sum == 4)
         {
             print("투표");
 

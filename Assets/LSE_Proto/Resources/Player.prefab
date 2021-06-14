@@ -10374,7 +10374,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5395525979929216634
@@ -16393,6 +16393,8 @@ MonoBehaviour:
   otherModel: {fileID: 4364817195821397955}
   UIHelper: {fileID: 4951868439776161708}
   playerCam: {fileID: 840988573537821216}
+  MyStatus: {fileID: 5343164536338803762}
+  Speaker: {fileID: 4216295789589671698}
   pos: {fileID: 0}
   doc: {fileID: 0}
   middlePos: {fileID: 0}

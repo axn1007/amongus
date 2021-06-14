@@ -20,6 +20,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
     public GameObject otherModel;
     public GameObject UIHelper;
     public GameObject playerCam;
+    public GameObject MyStatus;
+    public GameObject Speaker;
 
     public GameObject pos;
     public GameObject doc;
@@ -58,6 +60,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         UIHelper.SetActive(photonView.IsMine);
         playerCam.SetActive(photonView.IsMine);
         otherModel.SetActive(!photonView.IsMine);
+        MyStatus.SetActive(photonView.IsMine);
+        Speaker.SetActive(photonView.IsMine);
 
         //등장 소리
         SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_1);
