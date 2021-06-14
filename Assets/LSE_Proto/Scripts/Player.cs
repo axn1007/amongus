@@ -98,19 +98,23 @@ public class Player : MonoBehaviourPun
     {
         if(Input.GetKeyDown(KeyCode.Alpha1) || OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch))
         {
-            if (crew)
+            if (photonView.IsMine)
             {
-                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MOpen);
-                missionUI.SetActive(true);
-                missionBar.SetActive(true);
-            }
+                if (crew)
+                {
+                    SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MOpen);
+                    missionUI.SetActive(true);
+                    missionBar.SetActive(true);
+                }
 
-            if (imposter)
-            {
-                //if (kill != true) return;
+                if (imposter)
+                {
+                    //if (kill != true) return;
 
-                photonView.RPC("AttackKnife", RpcTarget.All);
+                    photonView.RPC("AttackKnife", RpcTarget.All);
+                }
             }
+            
         } 
         
 
