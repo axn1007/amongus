@@ -22,6 +22,9 @@ public class MoveLever : MonoBehaviour
                 if (myPlayer.mission[1] != true) return;
 
                 print("LeverMission Complete!");
+
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MCl);
+
                 Vent.instance.sliderBool = false;
                 myPlayer.myScore += 1;
             }

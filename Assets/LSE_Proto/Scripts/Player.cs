@@ -105,6 +105,7 @@ public class Player : MonoBehaviourPun
         {
             if (crew)
             {
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MOpen);
                 missionUI.SetActive(true);
                 missionBar.SetActive(true);
             }
@@ -142,6 +143,8 @@ public class Player : MonoBehaviourPun
     {
         if (other.gameObject.tag == "knife")
         {
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Kill);
+
             print(imposter);
             if (imposter == true) return;
 
@@ -181,6 +184,7 @@ public class Player : MonoBehaviourPun
             if (crew == false && imposter == true)
             {
                 print(gameObject.GetComponent<PhotonView>().ViewID + "임포스터입니다. 크루원을 모두 죽이세요.");
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_ImOrCr);
                 intro[3].SetActive(true);
                 print("임포스터 UI");
             }
@@ -188,6 +192,7 @@ public class Player : MonoBehaviourPun
             else
             {
                 print(gameObject.GetComponent<PhotonView>().ViewID + "크루원 입니다. 미션을 모두 수행하세요.");
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_ImOrCr);
                 intro[2].SetActive(true);
                 print("크루원 UI");
             }
@@ -208,6 +213,8 @@ public class Player : MonoBehaviourPun
 
         if(call == true)
         {
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Emerg);
+
             yield return new WaitForSeconds(1.0f);
             print("5");
             yield return new WaitForSeconds(1.0f);
@@ -230,6 +237,7 @@ public class Player : MonoBehaviourPun
         print(scanCount);
         if (scanCount == 2)
         {
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MCl);
             print("ScanMission Complete");
             myScore += 1;
         }
@@ -241,6 +249,7 @@ public class Player : MonoBehaviourPun
 
         if (energyCount == 1)
         {
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MCl);
             myScore += 1;
             print("EnergyMission Complete");
         }
@@ -252,6 +261,7 @@ public class Player : MonoBehaviourPun
 
         if (btnCount == 2)
         {
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MCl);
             print("PressButtonMission Complete");
             myScore += 1;
         }
@@ -337,7 +347,6 @@ public class Player : MonoBehaviourPun
             bone.transform.position = transform.position - new Vector3(0, 1.39f, 0);
             die = true;
             GameManager.instance.result = true;
-            //SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_1);
         }
     }
 }

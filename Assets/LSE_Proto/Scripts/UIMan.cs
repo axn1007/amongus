@@ -30,6 +30,7 @@ public class UIMan : MonoBehaviourPun
     public void OnClickVent(int idx)
     {
         photonView.RPC("MoveVentPos", RpcTarget.All, vent[idx].transform.position + new Vector3(0, 1.39f, 0));
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Vent);
         Vent.instance.ventUI.SetActive(false);
     }
 

@@ -160,7 +160,9 @@ public class GameManager : MonoBehaviourPun
     public void OnClickVoteBtn1()
     {
         if (Player.instance.vote != true) return;
-        
+
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Vote);
+
         print("버튼1이 눌렸습니다");
 
         myPlayer.photonView.RPC("AddCount", RpcTarget.All, 0);
@@ -172,6 +174,8 @@ public class GameManager : MonoBehaviourPun
     public void OnClickVoteBtn2()
     {
         if (Player.instance.vote != true) return;
+
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Vote);
 
         print("버튼2이 눌렸습니다");
 
@@ -185,6 +189,8 @@ public class GameManager : MonoBehaviourPun
     {
         if (Player.instance.vote != true) return;
 
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Vote);
+
         print("버튼3이 눌렸습니다");
 
         myPlayer.photonView.RPC("AddCount", RpcTarget.All, 2);
@@ -196,6 +202,8 @@ public class GameManager : MonoBehaviourPun
     public void OnClickVoteBtn4()
     {
         if (Player.instance.vote != true) return;
+
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Vote);
 
         print("버튼4이 눌렸습니다");
 
@@ -209,6 +217,8 @@ public class GameManager : MonoBehaviourPun
     {
         if (Player.instance.vote != true) return;
 
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Vote);
+
         print("버튼5이 눌렸습니다");
 
         myPlayer.photonView.RPC("AddCount", RpcTarget.All, 4);
@@ -220,6 +230,8 @@ public class GameManager : MonoBehaviourPun
     public void OnClickVoteBtn6()
     {
         if (Player.instance.vote != true) return;
+
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Vote);
 
         print("버튼6이 눌렸습니다");
 
@@ -233,6 +245,8 @@ public class GameManager : MonoBehaviourPun
     {
         if (Player.instance.vote != true) return;
 
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Vote);
+
         print("버튼7이 눌렸습니다");
 
         myPlayer.photonView.RPC("AddCount", RpcTarget.All, 6);
@@ -244,6 +258,8 @@ public class GameManager : MonoBehaviourPun
     public void OnClickVoteBtn8()
     {
         if (Player.instance.vote != true) return;
+
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Vote);
 
         print("버튼8이 눌렸습니다");
 
@@ -321,6 +337,8 @@ public class GameManager : MonoBehaviourPun
                         }
 
                         myPlayer.intro[9].SetActive(true);
+
+                        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_VoteBye);
                     }
                 }
             }
@@ -356,6 +374,7 @@ public class GameManager : MonoBehaviourPun
                 {
                     if (players[i].die == true)
                     {
+                        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_CrewWin);
                         myPlayer.intro[6].SetActive(true);
                         print("크루 승리!");
                         result = false;
@@ -365,6 +384,7 @@ public class GameManager : MonoBehaviourPun
 
             if (crews < 2)
             {
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_ImWin);
                 myPlayer.intro[4].SetActive(true);
                 print("임포스터 승리!");
                 result = false;
@@ -373,6 +393,7 @@ public class GameManager : MonoBehaviourPun
             if (crews > 2)
             {
                 crews = 0;
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_GameGo);
                 print("게임 계속 진행");
                 result = false;
             }

@@ -79,6 +79,7 @@ public class Puzzle : MonoBehaviour
         }
         
         print("Mission Clear!!!!!!!");
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MCl);
 
         if (myPlayer.mission[7] != true) return;
 

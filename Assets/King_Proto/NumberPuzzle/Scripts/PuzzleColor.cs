@@ -18,6 +18,7 @@ public class PuzzleColor : MonoBehaviour
     public void OnClickColorChange()
     {
         print("Å¬¸¯");
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Ming);
         RawImage im = GetComponent<RawImage>();
         //Image im = GetComponent<Image>();
         im.color = Color.gray;

@@ -11,7 +11,9 @@ public class Scan : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if(other.transform.tag == "Player")
-        {            
+        {
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Ming);
+
             curTime += Time.deltaTime;
 
             if(curTime > scanTime)
@@ -19,6 +21,8 @@ public class Scan : MonoBehaviour
                 if (Player.instance.mission[0] != true) return;
 
                 print("Misson Complete!");
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MCl);
+
                 myPlayer.ScanMission(1);
 
                 Transform mt = this.gameObject.transform.GetChild(1);
@@ -32,9 +36,12 @@ public class Scan : MonoBehaviour
         if(other.transform.name == "Bottle2")
         {
             curTime += Time.deltaTime;
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Ming);
 
-            if(curTime > scanTime)
+            if (curTime > scanTime)
             {
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MCl);
+
                 //if (myPlayer.mission[3] != true) return;
 
                 print("Mission Complete!");

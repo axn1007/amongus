@@ -43,6 +43,7 @@ public class WeedSelcet : MonoBehaviour
             {
                 weed = hit.transform;
                 hit.transform.SetParent(transform);
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Ming);
                 Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
                 rb.isKinematic = true;
             }
@@ -55,6 +56,7 @@ public class WeedSelcet : MonoBehaviour
 
         if(Input.GetMouseButtonUp(0) || OVRInput.GetUp(OVRInput.Button.Two, OVRInput.Controller.RTouch))
         {
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Ming);
             weed.SetParent(null);
             weed.GetComponent<Rigidbody>().isKinematic = false;
             weed = null;

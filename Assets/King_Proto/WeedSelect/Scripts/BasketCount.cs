@@ -28,6 +28,7 @@ public class BasketCount : MonoBehaviour
         if(count == 8)
         {
             if (myPlayer.mission[9] != true) return;
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MCl);
             print("Mission Crear!!!!!!!!!");
             myPlayer.myScore += 1;
         }

@@ -59,6 +59,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
         playerCam.SetActive(photonView.IsMine);
         otherModel.SetActive(!photonView.IsMine);
 
+        //등장 소리
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_1);
 
         //게임 시작 전에는 Idle 상태
         state = PlayerState.Idle;
@@ -416,6 +418,8 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
 
             if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Btn")))
             {
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Ming);
+
                 if (Player.instance.mission[8] != true) return;
 
                 currTime += Time.deltaTime;

@@ -32,6 +32,7 @@ public class RightHandGrab : MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
         {
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Grab);
             photonView.RPC("RpcGrabObj", RpcTarget.All);
         }
     }
@@ -50,6 +51,7 @@ public class RightHandGrab : MonoBehaviour
     {
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
         {
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Grab);
             photonView.RPC("RpcCatchObj", RpcTarget.All);
         }
     }
@@ -58,6 +60,7 @@ public class RightHandGrab : MonoBehaviour
     {
         if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Ming);
             photonView.RPC("RpcButtonOne", RpcTarget.All);
         }
     }

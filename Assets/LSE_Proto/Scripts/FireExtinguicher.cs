@@ -24,6 +24,7 @@ public class FireExtinguicher : MonoBehaviour
 
         Destroy(gameObject);
         Destroy(other.gameObject);
+        SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MCl);
 
         if (Player.instance.mission[5] != true) return;
         myPlayer.myScore += 1;
