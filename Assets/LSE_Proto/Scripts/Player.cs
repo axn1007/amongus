@@ -213,20 +213,27 @@ public class Player : MonoBehaviourPun
 
         if(call == true)
         {
-            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Emerg);
-
             yield return new WaitForSeconds(1.0f);
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Emerg);
             print("5");
+            intro[5].SetActive(true);
             yield return new WaitForSeconds(1.0f);
             print("4");
+            intro[5].SetActive(false);
             yield return new WaitForSeconds(1.0f);
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Emerg);
             print("3");
+            intro[5].SetActive(true);
             yield return new WaitForSeconds(1.0f);
             print("2");
+            intro[5].SetActive(false);
             yield return new WaitForSeconds(1.0f);
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Emerg);
             print("1");
+            intro[5].SetActive(true);
             yield return new WaitForSeconds(1.0f);
             print("EmergencyCall");
+            intro[5].SetActive(false);
             photonView.RPC("CallCrewPos", RpcTarget.All);
         }
     }
