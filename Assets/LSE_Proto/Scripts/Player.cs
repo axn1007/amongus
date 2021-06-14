@@ -92,11 +92,6 @@ public class Player : MonoBehaviourPun
 
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-
-        if (kill == false)
-        {
-            KillReset();
-        }
     }
 
     void UIClick()
@@ -112,7 +107,7 @@ public class Player : MonoBehaviourPun
 
             if (imposter)
             {
-                if (kill != true) return;
+                //if (kill != true) return;
 
                 photonView.RPC("AttackKnife", RpcTarget.All);
             }
@@ -143,7 +138,7 @@ public class Player : MonoBehaviourPun
     {
         if (other.gameObject.tag == "knife")
         {
-            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Kill);
+            //SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Kill);
 
             print(imposter);
             if (imposter == true) return;
@@ -274,6 +269,7 @@ public class Player : MonoBehaviourPun
         }
     }
 
+    /*
     void KillReset()
     {
         currTime += Time.deltaTime;
@@ -283,6 +279,7 @@ public class Player : MonoBehaviourPun
             currTime = 0;
         }
     }
+    */
 
 
 
