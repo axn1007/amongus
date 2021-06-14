@@ -310,7 +310,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
 
         Ray ray = new Ray(rHand.transform.position, rHand.transform.forward);
         RaycastHit hit;
-
+         
         if (Physics.SphereCast(ray, 0.5f, out hit, 100))
         {
             if (hit.transform.tag != "Bottle") return;
@@ -318,6 +318,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             catchedObj = hit.transform;
 
             hit.transform.SetParent(rHand.transform);
+            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Grab);
             Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
             rb.isKinematic = true;
             hit.transform.localPosition = Vector3.zero;
@@ -367,6 +368,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
                 if (Player.instance.mission[9] != true) return;
 
                 catchedObj = hit.transform;
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Grab);
                 hit.transform.SetParent(rHand.transform);
                 Rigidbody rb = hit.transform.GetComponent<Rigidbody>();
                 rb.isKinematic = true;
@@ -389,6 +391,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
             if (hit.transform.tag == "energy")
             {
                 //Material mt = hit.transform.GetComponent<MeshRenderer>().material;
+                SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_Ming);
                 Transform mt = hit.transform.GetChild(0);
                 mt.GetChild(0).gameObject.SetActive(false);
                 mt.GetChild(1).gameObject.SetActive(true);
@@ -406,6 +409,7 @@ public class PlayerMove : MonoBehaviourPun, IPunObservable
                 if (currTime > pressTime)
                 {
                     if (Player.instance.mission[4] != true) return;
+
 
                     print(objectName + " Mission Complete!");
                     myPlayer.ButtonMission(1);
