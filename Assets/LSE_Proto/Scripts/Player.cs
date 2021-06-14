@@ -130,7 +130,7 @@ public class Player : MonoBehaviourPun
 
                 if (imposter)
                 {
-                    if (kill != true) return;
+                    //if (kill != true) return;
 
                     photonView.RPC("DestroyKnife", RpcTarget.All);
                 }
