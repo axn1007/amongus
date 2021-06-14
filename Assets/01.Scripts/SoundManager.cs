@@ -47,7 +47,7 @@ public class SoundManager : MonoBehaviour
 
     void Update()
     {
-        PlayBGM(BGM_TYPE.BGM_1);
+        
     }
 
     public void PlayBGM(BGM_TYPE type)
@@ -58,7 +58,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayEFT(EFT_TYPE type)
     {
-        eftAudio.clip = efts[(int)type];
-        eftAudio.Play();
+        //eftAudio.clip = efts[(int)type];
+        //eftAudio.Play();
+        eftAudio.PlayOneShot(efts[(int)type]);
     }    
 }
