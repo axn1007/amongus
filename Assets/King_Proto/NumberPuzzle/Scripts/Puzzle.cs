@@ -81,11 +81,12 @@ public class Puzzle : MonoBehaviour
         print("Mission Clear!!!!!!!");
         SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_MCl);
 
-        if (myPlayer.mission[7] != true) return;
-
-        myPlayer.myScore += 1;
+        if (myPlayer.mission[7] == true)
+        {
+            myPlayer.myScore += 1;
+        }
         GameManager.instance.missionUi[2].SetActive(false);
-        return;
+        //return;
     }
     
 }
