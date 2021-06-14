@@ -42,6 +42,7 @@ public class Player : MonoBehaviourPun
 
     public GameObject aiColor;
     public GameObject otherAiColor;
+    public AudioListener audioListener;
 
     public List<Material> colors = new List<Material>();
 
@@ -58,6 +59,7 @@ public class Player : MonoBehaviourPun
         if (photonView.IsMine)
         {
             GameManager.instance.myPlayer = this;
+            audioListener.enabled = true;
         }
         infoNum = photonView.OwnerActorNr;
         GameManager.instance.arrayCount[photonView.OwnerActorNr - 1, 0] = photonView.OwnerActorNr;
