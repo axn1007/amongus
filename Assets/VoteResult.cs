@@ -13,7 +13,6 @@ public class VoteResult : MonoBehaviour
 
     //목적지
     public GameObject pos;
-    public int crewFac;
 
     private void Awake()
     {
@@ -40,8 +39,10 @@ public class VoteResult : MonoBehaviour
         }
     }
 
-    void crewRandom()
+    public void crewRandom()
     {
+        int crewFac = GameManager.instance.infoIdx;
+
         GameObject crew = Instantiate(crewFactory[crewFac], image.transform);
 
         //만들어진 crew의 부모를 Image의 transform으로 한다

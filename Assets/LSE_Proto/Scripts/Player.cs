@@ -148,7 +148,6 @@ public class Player : MonoBehaviourPun
             {
                 photonView.RPC("BeGhost", RpcTarget.All, infoNum);
                 kill = false;
-                die = true;
                 currTime = 0;
             }
         }
@@ -335,8 +334,8 @@ public class Player : MonoBehaviourPun
             GameObject bone = Instantiate(boneFactory);
             bone.transform.position = transform.position - new Vector3(0, 1.39f, 0);
             die = true;
-
-            SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_1);
+            GameManager.instance.result = true;
+            //SoundManager.instance.PlayEFT(SoundManager.EFT_TYPE.EFT_1);
         }
     }
 }

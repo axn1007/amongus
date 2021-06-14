@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviourPun
     public List<Player> players = new List<Player>();
 
     public int[,] arrayCount = new int[8, 2];
-
+    public int infoIdx;
     public int sum;
     public GameObject voteUi;
 
@@ -46,9 +46,6 @@ public class GameManager : MonoBehaviourPun
 
     void Start()
     {
-        //Screen.SetResolution(960, 640, FullScreenMode.Windowed);
-
-
         PhotonNetwork.SendRate = 30;
         PhotonNetwork.SerializationRate = 30;
 
@@ -57,44 +54,13 @@ public class GameManager : MonoBehaviourPun
         StartCoroutine(ImposterRand());
         //투표
         StartCoroutine(SortVoting());
+
+        StartCoroutine(CheckResult());
     }
 
     void Update()
-    {/*
-        if (result == true) return;
-
-        for (int i = 0; i < players.Count; i++)
-        {
-            if (players[i].crew == true)
-            {
-                if (players[i].die == false)
-                {
-                    crews++;
-                }
-            }
-
-            if(players[i].imposter == true)
-            {
-                if(players[i].die == true)
-                {
-                    myPlayer.intro[6].SetActive(true);
-                    result = true;
-                }
-            }
-        }
-
-        if (crews > 2)
-        {
-            crews = 0;
-            return;
-        }
-
-        if (crews < 2)
-        {
-            myPlayer.intro[4].SetActive(true);
-            result = true;
-        }
-        */
+    {
+        
     }
 
     public Vector3 GetEmptyPos()
@@ -315,6 +281,7 @@ public class GameManager : MonoBehaviourPun
                 }
             }
             print(bestIdx[0]);
+            infoIdx = bestIdx[0] + 1;
 
             myPlayer.intro[1].SetActive(true);
             yield return new WaitForSeconds(3.0f);
@@ -343,16 +310,11 @@ public class GameManager : MonoBehaviourPun
                         //버튼 비활성화
                         voteUi.transform.GetChild(bestIdx[0] + 3).gameObject.SetActive(false);
 
-                        //누가 죽었는지 띄우기
-                        //VoteResult.instance.crewFac = bestIdx[0];
-
-                        //임포스터라면
                         if(players[i].imposter == true)
                         {
                             myPlayer.uiText.text = "축하합니다! 임포스터 입니다.";
                         }
 
-                        //크루라면
                         if(players[i].crew == true)
                         {
                             myPlayer.uiText.text = "아쉽습니다. 임포스터가 아니었습니다.";
@@ -366,6 +328,54 @@ public class GameManager : MonoBehaviourPun
             yield return new WaitForSeconds(10.0f);
             myPlayer.intro[8].SetActive(false);
             myPlayer.intro[9].SetActive(false);
+
+            result = true;            
+        }
+    }
+
+    IEnumerator CheckResult()
+    {
+        while (result == false)
+        {
+            yield return null;
+        }
+
+        if(result == true)
+        {
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (players[i].crew == true)
+                {
+                    if (players[i].die == false)
+                    {
+                        crews++;
+                    }
+                }
+
+                if (players[i].imposter == true)
+                {
+                    if (players[i].die == true)
+                    {
+                        myPlayer.intro[6].SetActive(true);
+                        print("크루 승리!");
+                        result = false;
+                    }
+                }
+            }
+
+            if (crews < 2)
+            {
+                myPlayer.intro[4].SetActive(true);
+                print("임포스터 승리!");
+                result = false;
+            }
+
+            if (crews > 2)
+            {
+                crews = 0;
+                print("게임 계속 진행");
+                result = false;
+            }
         }
     }
 
