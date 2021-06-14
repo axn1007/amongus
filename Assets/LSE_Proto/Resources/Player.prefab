@@ -16490,7 +16490,7 @@ MonoBehaviour:
   crew: 0
   vote: 0
   infoNum: 0
-  myScore: 0
+  myScore: 49
   mySlider: {fileID: 2953445727965370361}
   missionComplete: 0
   scanCount: 1
